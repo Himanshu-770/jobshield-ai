@@ -31,17 +31,17 @@ export default function StatsCTA() {
 
       {/* CTA */}
       <div className="mx-auto mt-10 max-w-4xl rounded-xl border border-white/10 bg-[#111A2E] px-6 py-8 text-center sm:mt-30 sm:py-10">
-        <h2 className="text-xl font-bold sm:text-2xl">
+        <h2 className="text-xl font-extrabold sm:text-3xl">
           Before you apply, check the job.
         </h2>
 
-        <p className="mx-auto mt-4 max-w-lg text-[10px] leading-4 text-gray-400 sm:text-[13px] font-semibold ">
+        <p className="mx-auto mt-4 max-w-lg text-[10px] leading-4 text-gray-400 sm:text-[15px]  ">
           Protect your personal data and financial security. Our AI scanning
           system is free to use and delivers reports in under 10 seconds.
         </p>
 
         <Link
-          href="/analyze"
+          href="/auth/signup"
           className="mt-8 inline-flex items-center gap-1.5 rounded-md bg-blue-500 px-4 py-2 text-[16px] font-semibold hover:bg-blue-400"
         >
           Analyze a Job

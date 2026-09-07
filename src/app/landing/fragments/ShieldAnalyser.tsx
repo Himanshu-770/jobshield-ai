@@ -6,13 +6,16 @@ export default function ShieldAnalyzer() {
       <div className="flex items-center justify-between">
         <h2 className="text-base font-semibold">Shield Analyzer</h2>
 
-        <span className="rounded bg-emerald-500/10 px-2 py-1 text-[12px] text-emerald-400">
+        <span className="rounded-xl bg-emerald-500/10 px-2 py-1 text-[12px] text-emerald-400 flex flex-row">
+      <div className="flex h-3 w-3 items-center justify-center rounded-full bg-green-300 mt-1 mr-1.5">
+  <div className="h-2 w-2 rounded-full bg-green-600 " />
+</div>
           Scanner Active
         </span>
       </div>
 
       <div className="mt-5 space-y-4">
-        <Field label="Company Name" value="Apex Global Tech" />
+        <Field label="Company Name" value="Apex Global Tech " />
 
         <Field
           label="Recruiter Email"
@@ -27,7 +30,7 @@ export default function ShieldAnalyzer() {
       </div>
 
       <div className="mt-5 flex gap-3 rounded-lg border border-white/10 bg-[#0B1220] p-3">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-red-500 text-sm font-medium text-red-400">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-4 border-red-500 text-sm font-medium text-red-400">
           85
         </div>
 
@@ -66,12 +69,12 @@ function Field({
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-[10px] text-gray-500">
+      <label className="mb-1.5 block text-[12px] font-semibold text-gray-500">
         {label}
       </label>
 
       <div
-        className={`rounded-md bg-[#080D17] px-3 py-2.5 text-xs text-gray-300 ${
+        className={`rounded-md bg-[#080D17] px-3 py-2.5 text-[13px] text-gray-300 ${
           large ? "min-h-14 leading-4" : ""
         }`}
       >

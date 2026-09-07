@@ -17,11 +17,11 @@ export default function Navbar() {
     <nav className="border-b border-white/10 bg-[#070B14]">
       <div className="relative mx-auto flex h-20 max-w-7xl items-center px-6">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#3B82F6] shadow-[0_0_25px_rgba(59,130,246,0.55)]">
             <ShieldCheck size={20} />
           </div>
           <span className="text-xl font-semibold">
-            JobShield <span className="text-blue-500">AI</span>
+            JobShield <span className="text-[#3B82F6]">AI</span>
           </span>
         </Link>
 
@@ -46,9 +46,9 @@ export default function Navbar() {
 
         <Link
           href="/auth/signup"
-          className="ml-auto hidden rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium hover:bg-blue-500 md:block"
+          className="ml-auto hidden rounded-lg bg-[#3B82F6] px-5 py-2.5 text-sm font-medium hover:bg-blue-500 md:block"
         >
-          Get Started
+          Check a Job
         </Link>
 
         <button
@@ -85,9 +85,9 @@ export default function Navbar() {
             <Link
               href="/auth/signup"
               onClick={() => setOpen(false)}
-              className="rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium"
+              className="rounded-lg bg-[#3B82F6] px-5 py-2.5 text-center text-sm font-medium"
             >
-              Get Started
+              Check a Job
             </Link>
           </div>
         </div>
