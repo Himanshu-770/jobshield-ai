@@ -1,36 +1,137 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JobShield AI
 
-## Getting Started
+JobShield AI is an AI-powered job scam detection platform designed to help job seekers identify potentially fraudulent or suspicious job opportunities before sharing personal information or applying.
 
-First, run the development server:
+The application provides a simple interface where users can submit job details, job URLs, or screenshots and receive a security assessment.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Landing Page
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Responsive navigation bar
+- Hero section
+- How It Works section
+- About section
+- Statistics section
+- Call-to-action section
+- Responsive mobile navigation
+- Lucide React icons
 
-## Learn More
+### Authentication
 
-To learn more about Next.js, take a look at the following resources:
+- Sign In page
+- Sign Up page
+- Responsive authentication layout
+- Reusable authentication input component
+- Password visibility support
+- Authentication visual section
+- Navigation from authentication pages to dashboard
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Dashboard
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Responsive sidebar
+- Dashboard statistics
+- Jobs Checked
+- High Risk jobs
+- Medium Risk jobs
+- Safe jobs
+- Responsive mobile sidebar
+- Active navigation state
+- User profile section
 
-## Deploy on Vercel
+### Job Analysis
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Users can analyze a job using:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Job Details
+- Job URL
+- Screenshot
+
+The Analyze Job page includes:
+
+- Job title
+- Company name
+- Recruiter name
+- Recruiter email
+- Salary / compensation
+- Job description
+- Job posting URL
+- Screenshot upload
+- Security information
+- Analysis trigger
+
+### Responsive Design
+
+The application is designed for:
+
+- Desktop
+- Tablet
+- Mobile
+
+The dashboard sidebar and landing page navigation adapt to smaller screen sizes using mobile menus.
+
+---
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Lucide React
+- Framer Motion
+
+---
+
+## Project Structure
+
+```text
+src/
+├── app/
+│   ├── auth/
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   ├── signup/
+│   │   │   └── page.tsx
+│   │   └── fragments/
+│   │       ├── AuthInput.tsx
+│   │       └── AuthVisual.tsx
+│   │
+│   ├── analyze/
+│   │   ├── fragments/
+│   │   │   ├── AnalyzeHeader.tsx
+│   │   │   ├── JobDetailsForm.tsx
+│   │   │   └── WhatWeAnalyze.tsx
+│   │   └── page.tsx
+│   │
+│   ├── dashboard/
+│   │   ├── fragments/
+│   │   │   └── StatsCards.tsx
+│   │   └── page.tsx
+│   │
+│   ├── history/
+│   │   └── page.tsx
+│   │
+│   ├── settings/
+│   │   └── page.tsx
+│   │
+│   ├── components/
+│   │   ├── Navbar.tsx
+│   │   ├── Hero.tsx
+│   │   ├── HowItWorks.tsx
+│   │   ├── About.tsx
+│   │   ├── StatsCTA.tsx
+│   │   └── Footer.tsx
+│   │
+│   ├── page.tsx
+│   └── layout.tsx
+│
+├── components/
+│   ├── AuthVisual.tsx
+│   └── sidebar/
+│       └── Sidebar.tsx
+│
+└── types/
+    └── auth.ts
