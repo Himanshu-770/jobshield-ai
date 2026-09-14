@@ -186,7 +186,7 @@ function FormButton() {
 
       <button
         type="submit"
-        className="flex items-center gap-1.5 rounded-md bg-blue-500 px-5 py-3 text-sm font-semibold hover:bg-blue-400"
+        className="flex items-center gap-1.5 rounded-md bg-blue-500 px-5 py-3 text-sm font-semibold transition hover:bg-blue-400"
       >
         Analyze Job
 

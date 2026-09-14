@@ -6,16 +6,18 @@ export default function ShieldAnalyzer() {
       <div className="flex items-center justify-between">
         <h2 className="text-base font-semibold">Shield Analyzer</h2>
 
-        <span className="rounded-xl bg-emerald-500/10 px-2 py-1 text-[12px] text-emerald-400 flex flex-row">
-      <div className="flex h-3 w-3 items-center justify-center rounded-full bg-green-300 mt-1 mr-1.5">
-  <div className="h-2 w-2 rounded-full bg-green-600 " />
-</div>
+        <span className="flex flex-row items-center rounded-xl bg-emerald-500/10 px-2 py-1 text-[12px] text-emerald-400">
+          <div className="relative mr-1.5 flex h-3 w-3 items-center justify-center">
+            <div className="absolute h-3 w-3 animate-[ping_1s_cubic-bezier(0,0,0.2,1)_infinite] rounded-full bg-green-400 opacity-60" />
+            <div className="relative h-2 w-2 rounded-full bg-green-600" />
+          </div>
+
           Scanner Active
         </span>
       </div>
 
       <div className="mt-5 space-y-4">
-        <Field label="Company Name" value="Apex Global Tech " />
+        <Field label="Company Name" value="Apex Global Tech" />
 
         <Field
           label="Recruiter Email"

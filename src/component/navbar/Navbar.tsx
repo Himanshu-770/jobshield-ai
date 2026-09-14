@@ -8,6 +8,8 @@ const links = [
   { label: "Home", href: "/" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "About", href: "#about" },
+  {label: "Testmonial", href: "#testmonial"},
+  {label: "FAQ" , href: "#faq"}
 ];
 
 export default function Navbar() {
@@ -36,19 +38,19 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <Link
+          {/* <Link
             href="/auth/login"
             className="text-sm text-gray-400 hover:text-white"
           >
             Login
-          </Link>
+          </Link> */}
         </div>
 
         <Link
-          href="/auth/signup"
+          href="/auth/login"
           className="ml-auto hidden rounded-lg bg-[#3B82F6] px-5 py-2.5 text-sm font-medium hover:bg-blue-500 md:block"
         >
-          Check a Job
+          Login
         </Link>
 
         <button
@@ -74,20 +76,20 @@ export default function Navbar() {
               </Link>
             ))}
 
-            <Link
+            {/* <Link
               href="/auth/login"
               onClick={() => setOpen(false)}
               className="text-sm text-gray-300"
             >
               Login
-            </Link>
+            </Link> */}
 
             <Link
-              href="/auth/signup"
+              href="/auth/login"
               onClick={() => setOpen(false)}
               className="rounded-lg bg-[#3B82F6] px-5 py-2.5 text-center text-sm font-medium"
             >
-              Check a Job
+              Login
             </Link>
           </div>
         </div>

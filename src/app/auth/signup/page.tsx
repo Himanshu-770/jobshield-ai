@@ -60,11 +60,11 @@ export default function SignUp() {
 
               <span>
                 I agree to the{" "}
-                <Link href="#" className="text-blue-500">
+                <Link href="/terms" className="text-blue-500">
                   Terms of Service
                 </Link>{" "}
                 and{" "}
-                <Link href="#" className="text-blue-500">
+                <Link href="/privacy" className="text-blue-500">
                   Privacy Policy
                 </Link>
                 .

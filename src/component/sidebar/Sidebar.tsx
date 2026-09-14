@@ -17,7 +17,6 @@ const links = [
   { label: "Dashboard", href: "/dashboard", icon: BarChart3 },
   { label: "Analyze Job", href: "/analyze", icon: ShieldCheck },
   { label: "History", href: "/history", icon: Clock3 },
-  { label: "Settings", href: "/settings", icon: Settings },
 ];
 
 export default function Sidebar() {
@@ -37,7 +36,7 @@ export default function Sidebar() {
         </button>
 
         <div className="ml-4 flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-500 ">
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-500">
             <ShieldCheck size={15} />
           </div>
 
@@ -68,7 +67,7 @@ export default function Sidebar() {
               <ShieldCheck size={17} />
             </div>
 
-            <span className="font-bold text-xl">
+            <span className="text-xl font-bold">
               JobShield <span className="text-blue-500">AI</span>
             </span>
           </Link>
@@ -107,8 +106,16 @@ export default function Sidebar() {
 
         {/* User Profile */}
         <div className="mt-auto border-t border-white/5 pt-4">
-          <div className="flex items-center gap-3 px-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1A2942]">
+          <Link
+            href="/profile"
+            onClick={() => setOpen(false)}
+            className={`flex items-center gap-3 rounded-lg px-2 py-2 transition ${
+              pathname === "/profile"
+                ? "bg-white/5"
+                : "hover:bg-white/5"
+            }`}
+          >
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1A2942]">
               <User size={22} className="text-gray-400" />
             </div>
 
@@ -121,7 +128,7 @@ export default function Sidebar() {
                 alex@jobshield.ai
               </p>
             </div>
-          </div>
+          </Link>
         </div>
       </aside>
     </>
