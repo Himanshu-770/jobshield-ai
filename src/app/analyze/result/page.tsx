@@ -15,20 +15,30 @@ import {
 
 export default function AnalysisResult() {
   return (
-    <main className="min-h-screen bg-[#070B14] text-white">
+    <main
+      className="min-h-screen"
+      style={{
+        backgroundColor: "var(--background)",
+        color: "var(--text-primary)",
+      }}
+    >
       <section className="mx-auto max-w-6xl px-5 py-6 md:px-8">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex items-center justify-between gap-4">
           <Link
             href="/analyze"
-            className="flex items-center gap-2 text-sm text-gray-400 transition hover:text-white"
+            className="flex items-center gap-2 text-sm transition-colors hover:opacity-80"
+            style={{ color: "var(--text-secondary)" }}
           >
             <ArrowLeft size={16} />
             Back to Analyze
           </Link>
 
-          <span className="flex items-center gap-2 text-xs text-gray-500">
-            <ShieldCheck size={15} className="text-blue-500" />
+          <span
+            className="flex items-center gap-2 text-xs"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            <ShieldCheck size={15} style={{ color: "var(--primary)" }} />
             JobShield AI Analysis
           </span>
         </div>
@@ -36,29 +46,63 @@ export default function AnalysisResult() {
         {/* Main Result */}
         <div className="grid gap-5 lg:grid-cols-[1fr_330px]">
           {/* Risk Assessment */}
-          <section className="rounded-xl border border-white/10 bg-[#111A2E] p-6">
+          <section
+            className="rounded-xl border p-6"
+            style={{
+              backgroundColor: "var(--surface)",
+              borderColor: "var(--border)",
+            }}
+          >
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-[11px] font-medium uppercase tracking-wide text-gray-500">
+                <p
+                  className="text-xs font-medium uppercase tracking-wide"
+                  style={{ color: "var(--text-secondary)" }}
+                >
                   Overall Risk Assessment
                 </p>
 
                 <div className="mt-2 flex items-end gap-2">
-                  <span className="text-5xl font-bold text-red-500">78</span>
+                  <span
+                    className="text-5xl font-bold"
+                    style={{ color: "var(--risk-high)" }}
+                  >
+                    78
+                  </span>
 
-                  <span className="mb-1 text-sm text-gray-500">/ 100</span>
+                  <span
+                    className="mb-1 text-sm"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    / 100
+                  </span>
                 </div>
               </div>
 
-              <div className="flex w-fit items-center gap-2 rounded-full border border-red-500/20 bg-red-500/10 px-3 py-1.5 text-[11px] font-semibold text-red-400">
+              <div
+                className="flex w-fit items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold"
+                style={{
+                  backgroundColor:
+                    "color-mix(in srgb, var(--risk-high) 10%, transparent)",
+                  borderColor:
+                    "color-mix(in srgb, var(--risk-high) 20%, transparent)",
+                  color: "var(--risk-high)",
+                }}
+              >
                 <CircleAlert size={13} />
                 HIGH RISK
               </div>
             </div>
 
             {/* Warning */}
-            <div className="mt-6 border-l-2 border-red-500 pl-4">
-              <p className="text-sm leading-5 text-gray-400">
+            <div
+              className="mt-6 border-l-2 pl-4"
+              style={{ borderColor: "var(--risk-high)" }}
+            >
+              <p
+                className="text-sm leading-5"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 This job contains several indicators commonly associated with
                 recruitment scams. Proceed with extreme caution and do not
                 provide sensitive personal information.
@@ -67,38 +111,69 @@ export default function AnalysisResult() {
 
             {/* Score explanation */}
             <div className="mt-7">
-              <div className="mb-2 flex justify-between text-[12px]">
-                <span className="text-gray-500">Risk Level</span>
-                <span className="text-red-400">High Risk</span>
+              <div className="mb-2 flex justify-between text-xs">
+                <span style={{ color: "var(--text-secondary)" }}>
+                  Risk Level
+                </span>
+
+                <span style={{ color: "var(--risk-high)" }}>High Risk</span>
               </div>
 
-              <div className="h-2 overflow-hidden rounded-full bg-[#080D17]">
-                <div className="h-full w-[78%] rounded-full bg-red-500" />
+              <div
+                className="h-2 overflow-hidden rounded-full"
+                style={{ backgroundColor: "var(--surface-secondary)" }}
+              >
+                <div
+                  className="h-full w-[78%] rounded-full"
+                  style={{ backgroundColor: "var(--risk-high)" }}
+                />
               </div>
             </div>
           </section>
 
           {/* Company Verification */}
-          <section className="rounded-xl border border-white/10 bg-[#111A2E] p-5">
+          <section
+            className="rounded-xl border p-5"
+            style={{
+              backgroundColor: "var(--surface)",
+              borderColor: "var(--border)",
+            }}
+          >
             <div className="flex items-center gap-2">
-              <ShieldCheck size={17} className="text-blue-500" />
+              <ShieldCheck size={17} style={{ color: "var(--primary)" }} />
 
-              <h2 className="text-sm font-semibold">Company Verification</h2>
+              <h2 className="text-base font-semibold">Company Verification</h2>
             </div>
 
             <div className="mt-6 space-y-4">
               <div>
-                <p className="text-[11px] font-semibold uppercase text-gray-600">
+                <p
+                  className="text-xs font-semibold uppercase"
+                  style={{ color: "var(--text-muted)" }}
+                >
                   Company Name
                 </p>
 
-                <p className="mt-1 text-sm text-gray-300">Apex Global Tech</p>
+                <p
+                  className="mt-1 text-sm"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  Apex Global Tech
+                </p>
               </div>
 
               <div>
-                <p className="text-[11px] font-semibold uppercase text-gray-600">Status</p>
+                <p
+                  className="text-xs font-semibold uppercase"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  Status
+                </p>
 
-                <div className="mt-1 flex items-center gap-1.5 text-xs text-yellow-400">
+                <div
+                  className="mt-1 flex items-center gap-1.5 text-xs"
+                  style={{ color: "var(--risk-medium)" }}
+                >
                   <CircleAlert size={13} />
                   Needs Review
                 </div>
@@ -106,7 +181,11 @@ export default function AnalysisResult() {
 
               <Link
                 href="/investigation"
-                className="flex w-full items-center justify-center gap-2 rounded-md bg-blue-500 px-4 py-2.5 text-sm font-semibold transition hover:bg-blue-400"
+                className="flex w-full items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90"
+                style={{
+                  backgroundColor: "var(--primary)",
+                  color: "var(--primary-foreground)",
+                }}
               >
                 Investigate This Company
                 <ArrowUpRight size={14} />
@@ -118,13 +197,28 @@ export default function AnalysisResult() {
         {/* Analysis Details */}
         <div className="mt-5 grid gap-5 lg:grid-cols-2">
           {/* Red Flags */}
-          <section className="rounded-xl border border-white/10 bg-[#111A2E] p-5">
+          <section
+            className="rounded-xl border p-5"
+            style={{
+              backgroundColor: "var(--surface)",
+              borderColor: "var(--border)",
+            }}
+          >
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-500/10">
-                <ShieldAlert size={20} className="text-red-400" />
+              <div
+                className="flex h-8 w-8 items-center justify-center rounded-lg"
+                style={{
+                  backgroundColor:
+                    "color-mix(in srgb, var(--risk-high) 10%, transparent)",
+                }}
+              >
+                <ShieldAlert
+                  size={20}
+                  style={{ color: "var(--risk-high)" }}
+                />
               </div>
 
-              <h2 className="text-sm font-semibold">Red Flags Detected</h2>
+              <h2 className="text-base font-semibold">Red Flags Detected</h2>
             </div>
 
             <div className="mt-5 space-y-3">
@@ -154,15 +248,30 @@ export default function AnalysisResult() {
             </div>
           </section>
 
-          {/* Positive Signals */}
+          {/* Positive Signals and Domain Analysis */}
           <div className="space-y-5">
-            <section className="rounded-xl border border-white/10 bg-[#111A2E] p-5">
+            <section
+              className="rounded-xl border p-5"
+              style={{
+                backgroundColor: "var(--surface)",
+                borderColor: "var(--border)",
+              }}
+            >
               <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10">
-                  <ShieldCheck size={20} className="text-emerald-400" />
+                <div
+                  className="flex h-8 w-8 items-center justify-center rounded-lg"
+                  style={{
+                    backgroundColor:
+                      "color-mix(in srgb, var(--risk-low) 10%, transparent)",
+                  }}
+                >
+                  <ShieldCheck
+                    size={20}
+                    style={{ color: "var(--risk-low)" }}
+                  />
                 </div>
 
-                <h2 className="text-sm font-semibold">Positive Signals</h2>
+                <h2 className="text-base font-semibold">Positive Signals</h2>
               </div>
 
               <div className="mt-5 space-y-3">
@@ -173,11 +282,17 @@ export default function AnalysisResult() {
             </section>
 
             {/* Domain Analysis */}
-            <section className="rounded-xl border border-white/10 bg-[#111A2E] p-5">
+            <section
+              className="rounded-xl border p-5"
+              style={{
+                backgroundColor: "var(--surface)",
+                borderColor: "var(--border)",
+              }}
+            >
               <div className="flex items-center gap-2">
-                <Globe size={20} className="text-blue-500" />
+                <Globe size={20} style={{ color: "var(--primary)" }} />
 
-                <h2 className="text-sm font-semibold">Domain Analysis</h2>
+                <h2 className="text-base font-semibold">Domain Analysis</h2>
               </div>
 
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -186,22 +301,42 @@ export default function AnalysisResult() {
                   value="recruiter@gmail.com"
                 />
 
-                <DomainItem label="Company Domain" value="apexglobaltech.com" />
+                <DomainItem
+                  label="Company Domain"
+                  value="apexglobaltech.com"
+                />
               </div>
 
-              <div className="mt-4 rounded-lg border border-red-500/20 bg-red-500/5 p-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs text-red-400">
+              <div
+                className="mt-4 rounded-lg border p-3"
+                style={{
+                  backgroundColor:
+                    "color-mix(in srgb, var(--risk-high) 5%, transparent)",
+                  borderColor:
+                    "color-mix(in srgb, var(--risk-high) 20%, transparent)",
+                }}
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <div
+                    className="flex items-center gap-2 text-xs"
+                    style={{ color: "var(--risk-high)" }}
+                  >
                     <CircleX size={14} />
                     Email Domain Match
                   </div>
 
-                  <span className="text-[11px] font-semibold text-red-400">
+                  <span
+                    className="text-xs font-semibold"
+                    style={{ color: "var(--risk-high)" }}
+                  >
                     FAILED
                   </span>
                 </div>
 
-                <p className="mt-2 text-[11px] text-gray-500">
+                <p
+                  className="mt-2 text-xs"
+                  style={{ color: "var(--text-secondary)" }}
+                >
                   Domains do not match exactly.
                 </p>
               </div>
@@ -210,18 +345,31 @@ export default function AnalysisResult() {
         </div>
 
         {/* Bottom Action */}
-        <div className="mt-6 flex flex-col gap-3 rounded-xl border border-white/10 bg-[#111A2E] p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div
+          className="mt-6 flex flex-col gap-3 rounded-xl border p-5 sm:flex-row sm:items-center sm:justify-between"
+          style={{
+            backgroundColor: "var(--surface)",
+            borderColor: "var(--border)",
+          }}
+        >
           <div>
-            <h2 className="text-sm font-semibold">Need another check?</h2>
+            <h2 className="text-base font-semibold">Need another check?</h2>
 
-            <p className="mt-1 text-xs text-gray-500">
+            <p
+              className="mt-1 text-xs"
+              style={{ color: "var(--text-secondary)" }}
+            >
               Analyze another job before you apply.
             </p>
           </div>
 
           <Link
             href="/analyze"
-            className="flex items-center justify-center gap-2 rounded-md border border-white/10 px-4 py-2.5 text-xs font-semibold text-gray-300 transition hover:bg-white/5 hover:text-white"
+            className="flex items-center justify-center gap-2 rounded-md border px-4 py-2.5 text-xs font-semibold transition-colors hover:opacity-80"
+            style={{
+              borderColor: "var(--border)",
+              color: "var(--text-primary)",
+            }}
           >
             Analyze Another Job
             <ArrowLeft size={14} className="rotate-180" />
@@ -242,14 +390,33 @@ function Flag({
   description: string;
 }) {
   return (
-    <div className="rounded-lg border border-white/5 bg-[#080D17] p-3">
+    <div
+      className="rounded-lg border p-3"
+      style={{
+        backgroundColor: "var(--surface-secondary)",
+        borderColor: "var(--border)",
+      }}
+    >
       <div className="flex items-start gap-3">
-        <div className="mt-0.5 text-red-400">{icon}</div>
+        <div
+          className="mt-0.5"
+          style={{ color: "var(--risk-high)" }}
+        >
+          {icon}
+        </div>
 
         <div>
-          <p className="text-sm font-semibold text-gray-300">{title}</p>
+          <p
+            className="text-sm font-semibold"
+            style={{ color: "var(--text-primary)" }}
+          >
+            {title}
+          </p>
 
-          <p className="mt-1 text-[12px] leading-4 text-gray-500">
+          <p
+            className="mt-1 text-xs leading-4"
+            style={{ color: "var(--text-secondary)" }}
+          >
             {description}
           </p>
         </div>
@@ -260,19 +427,40 @@ function Flag({
 
 function Signal({ text }: { text: string }) {
   return (
-    <div className="flex items-center gap-2 text-sm text-gray-400">
-      <Check size={14} className="text-emerald-400" />
+    <div
+      className="flex items-center gap-2 text-sm"
+      style={{ color: "var(--text-secondary)" }}
+    >
+      <Check size={14} style={{ color: "var(--risk-low)" }} />
       {text}
     </div>
   );
 }
 
-function DomainItem({ label, value }: { label: string; value: string }) {
+function DomainItem({
+  label,
+  value,
+}: {
+  label: string;
+  value: string;
+}) {
   return (
     <div>
-      <p className="text-[12px] font-semibold uppercase text-gray-600">{label}</p>
+      <p
+        className="text-xs font-semibold uppercase"
+        style={{ color: "var(--text-muted)" }}
+      >
+        {label}
+      </p>
 
-      <div className="mt-2 rounded-md border border-white/10 bg-[#080D17] px-3 py-2 text-[11px] text-gray-400">
+      <div
+        className="mt-2 rounded-md border px-3 py-2 text-xs"
+        style={{
+          backgroundColor: "var(--surface-secondary)",
+          borderColor: "var(--border)",
+          color: "var(--text-secondary)",
+        }}
+      >
         {value}
       </div>
     </div>

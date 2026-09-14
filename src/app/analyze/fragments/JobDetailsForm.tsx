@@ -2,8 +2,8 @@
 
 import {
   ArrowUpRight,
-  LockKeyhole,
   CloudUpload,
+  LockKeyhole,
 } from "lucide-react";
 
 type Props = {
@@ -37,7 +37,11 @@ function DetailsForm({
         event.preventDefault();
         onAnalyze();
       }}
-      className="rounded-xl border border-white/10 bg-[#111A2E] p-5"
+      className="rounded-xl border p-5"
+      style={{
+        backgroundColor: "var(--surface)",
+        borderColor: "var(--border)",
+      }}
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <Field
@@ -70,7 +74,8 @@ function DetailsForm({
 
       <label
         htmlFor="jobDescription"
-        className="text-[14px] text-gray-400"
+        className="text-[14px]"
+        style={{ color: "var(--text-secondary)" }}
       >
         Job Description
       </label>
@@ -80,7 +85,12 @@ function DetailsForm({
         name="jobDescription"
         rows={5}
         placeholder="Paste the full job posting text or messages here..."
-        className="mt-2 w-full resize-none rounded-md border border-white/10 bg-[#080D17] p-3 text-sm outline-none placeholder:text-gray-600 placeholder:font-normal focus:border-blue-500"
+        className="mt-2 w-full resize-none rounded-md border p-3 text-sm font-normal outline-none transition-colors placeholder:text-sm placeholder:font-normal focus:border-[var(--primary)]"
+        style={{
+          backgroundColor: "var(--surface-secondary)",
+          borderColor: "var(--border)",
+          color: "var(--text-primary)",
+        }}
       />
 
       <FormButton />
@@ -99,7 +109,11 @@ function UrlForm({
         event.preventDefault();
         onAnalyze();
       }}
-      className="h-45 rounded-xl border border-white/10 bg-[#111A2E] p-5"
+      className="h-45 rounded-xl border p-5"
+      style={{
+        backgroundColor: "var(--surface)",
+        borderColor: "var(--border)",
+      }}
     >
       <Field
         label="Job Posting URL"
@@ -122,25 +136,41 @@ function ScreenshotForm({
         event.preventDefault();
         onAnalyze();
       }}
-      className="rounded-xl border border-white/10 bg-[#111A2E] p-5"
+      className="rounded-xl border p-5"
+      style={{
+        backgroundColor: "var(--surface)",
+        borderColor: "var(--border)",
+      }}
     >
-      <label className="text-[14px] text-gray-400">
+      <label
+        className="text-[14px]"
+        style={{ color: "var(--text-secondary)" }}
+      >
         Upload Job Screenshot
       </label>
 
-      <label className="mt-3 flex min-h-48 cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-white bg-[#080D17] text-center text-xs text-gray-500">
+      <label
+        className="mt-3 flex min-h-48 cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed text-center text-xs"
+        style={{
+          backgroundColor: "var(--surface-secondary)",
+          borderColor: "var(--border)",
+          color: "var(--text-secondary)",
+        }}
+      >
         <CloudUpload
           size={36}
-          className="mb-2 text-white"
+          className="mb-2"
+          style={{ color: "var(--text-primary)" }}
         />
 
-        <span className="text-sm text-white">
+        <span
+          className="text-sm"
+          style={{ color: "var(--text-primary)" }}
+        >
           Upload screenshot
         </span>
 
-        <span className="mt-1">
-          PNG, JPG or WEBP
-        </span>
+        <span className="mt-1">PNG, JPG or WEBP</span>
 
         <input
           type="file"
@@ -163,13 +193,21 @@ function Field({
 }) {
   return (
     <div>
-      <label className="text-[14px] text-gray-400">
+      <label
+        className="text-[14px]"
+        style={{ color: "var(--text-secondary)" }}
+      >
         {label}
       </label>
 
       <input
         placeholder={placeholder}
-        className="mt-2 w-full rounded-md border border-white/10 bg-[#080D17] px-3 py-2.5 text-sm outline-none placeholder:text-gray-600 placeholder:text-[13px] placeholder:font-semibold focus:border-blue-500"
+        className="mt-2 w-full rounded-md border px-3 py-2.5 text-sm font-normal outline-none transition-colors placeholder:text-sm placeholder:font-semibold focus:border-[var(--primary)]"
+        style={{
+          backgroundColor: "var(--surface-secondary)",
+          borderColor: "var(--border)",
+          color: "var(--text-primary)",
+        }}
       />
     </div>
   );
@@ -177,8 +215,11 @@ function Field({
 
 function FormButton() {
   return (
-    <div className="mt-5 flex items-center justify-between gap-4">
-      <p className="flex items-center gap-1.5 text-[12px] font-semibold text-gray-500">
+    <div className="mt-5 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+      <p
+        className="flex items-center gap-1.5 text-xs font-semibold"
+        style={{ color: "var(--text-secondary)" }}
+      >
         <LockKeyhole size={18} />
 
         Your data is encrypted and never shared with third parties.
@@ -186,10 +227,13 @@ function FormButton() {
 
       <button
         type="submit"
-        className="flex items-center gap-1.5 rounded-md bg-blue-500 px-5 py-3 text-sm font-semibold transition hover:bg-blue-400"
+        className="flex items-center gap-1.5 rounded-md px-5 py-3 text-sm font-semibold transition-colors hover:opacity-90"
+        style={{
+          backgroundColor: "var(--primary)",
+          color: "var(--primary-foreground)",
+        }}
       >
         Analyze Job
-
         <ArrowUpRight size={16} />
       </button>
     </div>

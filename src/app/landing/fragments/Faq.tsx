@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -55,15 +56,15 @@ export default function FAQ() {
   };
 
   return (
-    <section className="bg-[#070B14] px-6 py-16 sm:pb-20">
+    <section className="bg-[var(--background)] px-6 py-16 sm:pb-20">
       <div className="mx-auto max-w-4xl">
         {/* Heading */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl font-bold sm:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] sm:text-3xl">
             Frequently Asked Questions
           </h2>
 
-          <p className="mt-4 text-sm font-medium leading-5 text-gray-500 sm:text-base">
+          <p className="mt-4 text-sm font-medium leading-5 text-[var(--text-secondary)] sm:text-base">
             Everything you need to know about protecting yourself from
             suspicious job opportunities.
           </p>
@@ -77,21 +78,21 @@ export default function FAQ() {
             return (
               <div
                 key={faq.question}
-                className="overflow-hidden rounded-lg border border-white/10 bg-[#111A2E]"
+                className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)]"
               >
                 <button
                   type="button"
                   onClick={() => toggleFAQ(index)}
                   className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                 >
-                  <span className="text-sm font-semibold text-white sm:text-base">
+                  <span className="text-sm font-semibold text-[var(--text-primary)] sm:text-base">
                     {faq.question}
                   </span>
 
                   <motion.span
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
-                    className="shrink-0 text-blue-500"
+                    className="shrink-0 text-[var(--primary)]"
                   >
                     {isOpen ? <Minus size={18} /> : <Plus size={18} />}
                   </motion.span>
@@ -114,12 +115,12 @@ export default function FAQ() {
                       }}
                       className="overflow-hidden"
                     >
-                      <div className="border-t border-white/10 px-5 py-4">
+                      <div className="border-t border-[var(--border)] px-5 py-4">
                         <motion.p
                           initial={{ y: -5 }}
                           animate={{ y: 0 }}
                           transition={{ duration: 0.25 }}
-                          className="text-xs font-medium leading-5 text-gray-500 sm:text-sm"
+                          className="text-xs font-medium leading-5 text-[var(--text-secondary)] sm:text-sm"
                         >
                           {faq.answer}
                         </motion.p>

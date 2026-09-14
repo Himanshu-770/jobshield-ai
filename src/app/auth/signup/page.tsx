@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 
@@ -6,22 +7,37 @@ import AuthInput from "../fragments/AuthInput";
 
 export default function SignUp() {
   return (
-    <main className="flex min-h-screen bg-[#070B14] text-white">
+    <main
+      className="flex min-h-screen"
+      style={{
+        backgroundColor: "var(--background)",
+        color: "var(--text-primary)",
+      }}
+    >
       <AuthVisual />
 
       <section className="flex w-full items-center justify-center px-6 py-12 lg:w-1/2">
         <div className="w-full max-w-md">
           <div className="mb-8 flex items-center gap-2 lg:hidden">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
+            <div
+              className="flex h-8 w-8 items-center justify-center rounded-lg"
+              style={{
+                backgroundColor: "var(--primary)",
+                color: "var(--primary-foreground)",
+              }}
+            >
               <ShieldCheck size={17} />
             </div>
 
             <span className="font-semibold">
-              JobShield <span className="text-blue-500">AI</span>
+              JobShield{" "}
+              <span style={{ color: "var(--primary)" }}>AI</span>
             </span>
           </div>
 
-          <h1 className="text-3xl font-extrabold pl-15">Create an account </h1>
+          <h1 className="pl-15 text-3xl font-extrabold">
+            Create an account
+          </h1>
 
           <form className="mt-8 space-y-5">
             <AuthInput
@@ -51,20 +67,31 @@ export default function SignUp() {
               placeholder="Confirm your password"
             />
 
-            <label className="flex items-start gap-2 text-xs text-gray-500">
+            <label
+              className="flex items-start gap-2 text-xs"
+              style={{ color: "var(--text-secondary)" }}
+            >
               <input
                 type="checkbox"
                 name="agreeToTerms"
-                className="mt-0.5 accent-blue-500"
+                className="mt-0.5 accent-[var(--primary)]"
               />
 
               <span>
                 I agree to the{" "}
-                <Link href="/terms" className="text-blue-500">
+                <Link
+                  href="/terms"
+                  className="transition-colors"
+                  style={{ color: "var(--primary)" }}
+                >
                   Terms of Service
                 </Link>{" "}
                 and{" "}
-                <Link href="/privacy" className="text-blue-500">
+                <Link
+                  href="/privacy"
+                  className="transition-colors"
+                  style={{ color: "var(--primary)" }}
+                >
                   Privacy Policy
                 </Link>
                 .
@@ -73,17 +100,25 @@ export default function SignUp() {
 
             <button
               type="submit"
-              className="w-full rounded-md bg-blue-500 py-2.5 text-sm font-semibold hover:bg-blue-400"
+              className="w-full rounded-md py-2.5 text-sm font-semibold transition-colors"
+              style={{
+                backgroundColor: "var(--primary)",
+                color: "var(--primary-foreground)",
+              }}
             >
               Create Account
             </button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-gray-500">
+          <p
+            className="mt-6 text-center text-sm"
+            style={{ color: "var(--text-secondary)" }}
+          >
             Already have an account?{" "}
             <Link
               href="/auth/login"
-              className="text-blue-500 hover:text-blue-400"
+              className="transition-colors"
+              style={{ color: "var(--primary)" }}
             >
               Sign in
             </Link>

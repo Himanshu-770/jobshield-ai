@@ -1,3 +1,4 @@
+
 import { BriefcaseBusiness, ShieldAlert, ShieldCheck } from "lucide-react";
 
 const stats = [
@@ -28,10 +29,10 @@ const stats = [
 ];
 
 const iconStyles = {
-  blue: "text-blue-500",
-  red: "text-red-500",
-  yellow: "text-yellow-500",
-  green: "text-emerald-400",
+  blue: "var(--primary)",
+  red: "var(--risk-high)",
+  yellow: "var(--risk-medium)",
+  green: "var(--risk-low)",
 };
 
 export default function StatsCards() {
@@ -40,21 +41,33 @@ export default function StatsCards() {
       {stats.map(({ label, value, icon: Icon, type }) => (
         <div
           key={label}
-          className="rounded-xl border border-white/10 bg-[#111A2E] p-6 "
+          className="rounded-xl border p-6"
+          style={{
+            backgroundColor: "var(--surface)",
+            borderColor: "var(--border)",
+          }}
         >
           <div className="flex items-center justify-between">
-            <p className="text-[12px] font-bold text-gray-500">{label}</p>
+            <p
+              className="text-xs font-bold"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              {label}
+            </p>
 
             <Icon
               size={18}
-              className={iconStyles[type as keyof typeof iconStyles]}
+              style={{
+                color: iconStyles[type as keyof typeof iconStyles],
+              }}
             />
           </div>
 
           <p
-            className={`mt-3 text-2xl font-extrabold ${
-              iconStyles[type as keyof typeof iconStyles]
-            }`}
+            className="mt-3 text-2xl font-extrabold"
+            style={{
+              color: iconStyles[type as keyof typeof iconStyles],
+            }}
           >
             {value}
           </p>

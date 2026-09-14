@@ -17,27 +17,65 @@ const filters = ["All", "Low", "Medium", "High", "Critical"];
 
 const ITEMS_PER_PAGE = 5;
 
-function getRiskColor(riskLevel: string) {
+function getRiskStyles(riskLevel: string) {
   if (riskLevel === "Low Risk") {
-    return "border-emerald-500/20 bg-emerald-500/10 text-emerald-400";
+    return {
+      borderColor:
+        "color-mix(in srgb, var(--risk-low) 20%, transparent)",
+      backgroundColor:
+        "color-mix(in srgb, var(--risk-low) 10%, transparent)",
+      color: "var(--risk-low)",
+    };
   }
 
   if (riskLevel === "High Risk") {
-    return "border-orange-500/20 bg-orange-500/10 text-orange-400";
+    return {
+      borderColor:
+        "color-mix(in srgb, var(--risk-medium) 20%, transparent)",
+      backgroundColor:
+        "color-mix(in srgb, var(--risk-medium) 10%, transparent)",
+      color: "var(--risk-medium)",
+    };
   }
 
   if (riskLevel === "Critical") {
-    return "border-red-500/20 bg-red-500/10 text-red-400";
+    return {
+      borderColor:
+        "color-mix(in srgb, var(--risk-high) 20%, transparent)",
+      backgroundColor:
+        "color-mix(in srgb, var(--risk-high) 10%, transparent)",
+      color: "var(--risk-high)",
+    };
   }
 
-  return "border-yellow-500/20 bg-yellow-500/10 text-yellow-400";
+  return {
+    borderColor:
+      "color-mix(in srgb, var(--risk-medium) 20%, transparent)",
+    backgroundColor:
+      "color-mix(in srgb, var(--risk-medium) 10%, transparent)",
+    color: "var(--risk-medium)",
+  };
 }
 
-function getScoreColor(score: number) {
-  if (score >= 80) return "border-red-400 text-red-400";
-  if (score >= 50) return "border-orange-400 text-orange-400";
+function getScoreStyles(score: number) {
+  if (score >= 80) {
+    return {
+      borderColor: "var(--risk-high)",
+      color: "var(--risk-high)",
+    };
+  }
 
-  return "border-emerald-400 text-emerald-400";
+  if (score >= 50) {
+    return {
+      borderColor: "var(--risk-medium)",
+      color: "var(--risk-medium)",
+    };
+  }
+
+  return {
+    borderColor: "var(--risk-low)",
+    color: "var(--risk-low)",
+  };
 }
 
 export default function HistoryPage() {
@@ -47,9 +85,11 @@ export default function HistoryPage() {
 
   const filteredInvestigations = useMemo(() => {
     return investigations.filter((item) => {
+      const normalizedSearch = search.toLowerCase();
+
       const matchesSearch =
-        item.company.toLowerCase().includes(search.toLowerCase()) ||
-        item.jobTitle.toLowerCase().includes(search.toLowerCase());
+        item.company.toLowerCase().includes(normalizedSearch) ||
+        item.jobTitle.toLowerCase().includes(normalizedSearch);
 
       const matchesFilter =
         activeFilter === "All" ||
@@ -91,13 +131,22 @@ export default function HistoryPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#070B14] text-white md:flex">
+    <main
+      className="min-h-screen md:flex"
+      style={{
+        backgroundColor: "var(--background)",
+        color: "var(--text-primary)",
+      }}
+    >
       <Sidebar />
 
       <section className="min-w-0 flex-1 px-5 py-6 md:px-8 md:py-8">
         {/* Header */}
         <header>
-          <div className="flex items-center gap-2 text-blue-500">
+          <div
+            className="flex items-center gap-2"
+            style={{ color: "var(--primary)" }}
+          >
             <Clock3 size={17} />
 
             <span className="text-xs font-semibold uppercase tracking-wider">
@@ -109,19 +158,29 @@ export default function HistoryPage() {
             Investigation History
           </h1>
 
-          <p className="mt-2 max-w-xl text-sm leading-6 text-gray-500">
+          <p
+            className="mt-2 max-w-xl text-sm leading-6"
+            style={{ color: "var(--text-muted)" }}
+          >
             View and continue your previous job and company investigations.
             Review risk scores and updates to stay informed.
           </p>
         </header>
 
         {/* Search and Filters */}
-        <section className="mt-7 rounded-xl border border-white/10 bg-[#111A2E] p-4">
+        <section
+          className="mt-7 rounded-xl border p-4"
+          style={{
+            backgroundColor: "var(--surface)",
+            borderColor: "var(--border)",
+          }}
+        >
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="relative w-full lg:max-w-sm">
               <Search
                 size={15}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
+                className="absolute left-3 top-1/2 -translate-y-1/2"
+                style={{ color: "var(--text-muted)" }}
               />
 
               <input
@@ -131,111 +190,170 @@ export default function HistoryPage() {
                   setCurrentPage(1);
                 }}
                 placeholder="Search company or job..."
-                className="w-full rounded-md border border-white/10 bg-[#080D17] py-2.5 pl-9 pr-3 text-xs text-white outline-none placeholder:text-gray-600 focus:border-blue-500"
+                className="w-full rounded-md border py-2.5 pl-9 pr-3 text-xs outline-none transition-colors"
+                style={{
+                  backgroundColor: "var(--surface-secondary)",
+                  borderColor: "var(--border)",
+                  color: "var(--text-primary)",
+                }}
               />
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
-              {filters.map((filter) => (
-                <button
-                  key={filter}
-                  type="button"
-                  onClick={() => {
-                    setActiveFilter(filter);
-                    setCurrentPage(1);
-                  }}
-                  className={`rounded-full border px-3 py-1.5 text-[11px] font-medium transition ${
-                    activeFilter === filter
-                      ? "border-blue-500 bg-blue-500 text-white"
-                      : "border-white/10 text-gray-400 hover:bg-white/5 hover:text-white"
-                  }`}
-                >
-                  {filter}
-                </button>
-              ))}
+              {filters.map((filter) => {
+                const isActive = activeFilter === filter;
+
+                return (
+                  <button
+                    key={filter}
+                    type="button"
+                    onClick={() => {
+                      setActiveFilter(filter);
+                      setCurrentPage(1);
+                    }}
+                    className="rounded-full border px-3 py-1.5 text-xs font-medium transition-colors"
+                    style={{
+                      backgroundColor: isActive
+                        ? "var(--primary)"
+                        : "transparent",
+                      borderColor: isActive
+                        ? "var(--primary)"
+                        : "var(--border)",
+                      color: isActive
+                        ? "var(--primary-foreground)"
+                        : "var(--text-secondary)",
+                    }}
+                  >
+                    {filter}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </section>
 
         {/* Desktop Table */}
-        <section className="mt-5 hidden overflow-hidden rounded-xl border border-white/10 bg-[#111A2E] md:block">
+        <section
+          className="mt-5 hidden overflow-hidden rounded-xl border md:block"
+          style={{
+            backgroundColor: "var(--surface)",
+            borderColor: "var(--border)",
+          }}
+        >
           <div className="overflow-x-auto">
             <table className="w-full min-w-[720px] text-left">
-              <thead className="border-b border-white/10 bg-[#0D1527]">
-                <tr className="text-[10px] uppercase tracking-wide text-gray-500">
-                  <th className="px-4 py-4 font-medium">Company</th>
-                  <th className="px-4 py-4 font-medium">Job Title</th>
-                  <th className="px-4 py-4 font-medium">Score</th>
-                  <th className="px-4 py-4 font-medium">Risk Level</th>
-                  <th className="px-4 py-4 font-medium">Last Updated</th>
-                  <th className="px-4 py-4 font-medium">Updates</th>
-                  <th className="px-4 py-4 text-right font-medium">
+              <thead
+                className="border-b"
+                style={{
+                  backgroundColor: "var(--surface-secondary)",
+                  borderColor: "var(--border)",
+                }}
+              >
+                <tr
+                  className="text-xs uppercase tracking-wide"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  <th className="px-4 py-4 font-semibold">Company</th>
+                  <th className="px-4 py-4 font-semibold">Job Title</th>
+                  <th className="px-4 py-4 font-semibold">Score</th>
+                  <th className="px-4 py-4 font-semibold">Risk Level</th>
+                  <th className="px-4 py-4 font-semibold">Last Updated</th>
+                  <th className="px-4 py-4 font-semibold">Updates</th>
+                  <th className="px-4 py-4 text-right font-semibold">
                     Action
                   </th>
                 </tr>
               </thead>
 
-              <tbody className="divide-y divide-white/5">
-                {paginatedInvestigations.map((item) => (
-                  <tr
-                    key={`${item.userId}-${item.id}`}
-                    className="text-xs transition hover:bg-white/[0.02]"
-                  >
-                    <td className="px-4 py-4">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-[#1A2942] text-xs font-semibold text-gray-300">
-                          {item.company.charAt(0)}
+              <tbody>
+                {paginatedInvestigations.map((item) => {
+                  const scoreStyles = getScoreStyles(item.score);
+                  const riskStyles = getRiskStyles(item.riskLevel);
+
+                  return (
+                    <tr
+                      key={`${item.userId}-${item.id}`}
+                      className="border-b text-xs transition-colors last:border-b-0"
+                      style={{
+                        borderColor: "var(--border)",
+                      }}
+                    >
+                      <td className="px-4 py-4">
+                        <div className="flex items-center gap-3">
+                          <div
+                            className="flex h-8 w-8 items-center justify-center rounded-md text-xs font-semibold"
+                            style={{
+                              backgroundColor: "var(--surface-secondary)",
+                              color: "var(--text-secondary)",
+                            }}
+                          >
+                            {item.company.charAt(0)}
+                          </div>
+
+                          <span
+                            className="max-w-[130px] text-sm font-medium"
+                            style={{ color: "var(--text-primary)" }}
+                          >
+                            {item.company}
+                          </span>
                         </div>
+                      </td>
 
-                        <span className="max-w-[130px] font-medium text-gray-200">
-                          {item.company}
+                      <td
+                        className="px-4 py-4 text-xs"
+                        style={{ color: "var(--text-secondary)" }}
+                      >
+                        {item.jobTitle}
+                      </td>
+
+                      <td className="px-4 py-4">
+                        <span
+                          className="flex h-8 w-8 items-center justify-center rounded-full border text-xs font-bold"
+                          style={scoreStyles}
+                        >
+                          {item.score}
                         </span>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td className="px-4 py-4 text-gray-400">
-                      {item.jobTitle}
-                    </td>
+                      <td className="px-4 py-4">
+                        <span
+                          className="inline-flex rounded-full border px-2.5 py-1 text-xs"
+                          style={riskStyles}
+                        >
+                          {item.riskLevel}
+                        </span>
+                      </td>
 
-                    <td className="px-4 py-4">
-                      <span
-                        className={`flex h-8 w-8 items-center justify-center rounded-full border text-[11px] font-bold ${getScoreColor(
-                          item.score,
-                        )}`}
+                      <td
+                        className="px-4 py-4"
+                        style={{ color: "var(--text-muted)" }}
                       >
-                        {item.score}
-                      </span>
-                    </td>
+                        {item.lastUpdated}
+                      </td>
 
-                    <td className="px-4 py-4">
-                      <span
-                        className={`inline-flex rounded-full border px-2.5 py-1 text-[10px] ${getRiskColor(
-                          item.riskLevel,
-                        )}`}
+                      <td
+                        className="px-4 py-4 text-sm"
+                        style={{ color: "var(--text-secondary)" }}
                       >
-                        {item.riskLevel}
-                      </span>
-                    </td>
+                        {item.updates}
+                      </td>
 
-                    <td className="px-4 py-4 text-gray-500">
-                      {item.lastUpdated}
-                    </td>
-
-                    <td className="px-4 py-4 text-gray-400">
-                      {item.updates}
-                    </td>
-
-                    <td className="px-4 py-4 text-right">
-                      <Link
-                        href={`/history/${item.userId}/${item.companySlug}`}
-                        className="inline-flex items-center gap-1 rounded-md border border-white/10 px-3 py-2 text-[11px] font-medium text-gray-300 transition hover:border-blue-500/50 hover:bg-blue-500/10 hover:text-white"
-                      >
-                        Open
-                        <ChevronRight size={13} />
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
+                      <td className="px-4 py-4 text-right">
+                        <Link
+                          href={`/history/${item.userId}/${item.companySlug}`}
+                          className="inline-flex items-center gap-1 rounded-md border px-3 py-2 text-xs font-medium transition-colors"
+                          style={{
+                            borderColor: "var(--border)",
+                            color: "var(--text-secondary)",
+                          }}
+                        >
+                          Open
+                          <ChevronRight size={13} />
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -255,64 +373,87 @@ export default function HistoryPage() {
 
         {/* Mobile Cards */}
         <section className="mt-5 space-y-3 md:hidden">
-          {paginatedInvestigations.map((item) => (
-            <article
-              key={`${item.userId}-${item.id}`}
-              className="rounded-xl border border-white/10 bg-[#111A2E] p-4"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-md bg-[#1A2942] text-sm font-semibold text-gray-300">
-                    {item.company.charAt(0)}
+          {paginatedInvestigations.map((item) => {
+            const scoreStyles = getScoreStyles(item.score);
+            const riskStyles = getRiskStyles(item.riskLevel);
+
+            return (
+              <article
+                key={`${item.userId}-${item.id}`}
+                className="rounded-xl border p-4"
+                style={{
+                  backgroundColor: "var(--surface)",
+                  borderColor: "var(--border)",
+                }}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="flex h-9 w-9 items-center justify-center rounded-md text-sm font-semibold"
+                      style={{
+                        backgroundColor: "var(--surface-secondary)",
+                        color: "var(--text-secondary)",
+                      }}
+                    >
+                      {item.company.charAt(0)}
+                    </div>
+
+                    <div>
+                      <h2
+                        className="text-base font-semibold"
+                        style={{ color: "var(--text-primary)" }}
+                      >
+                        {item.company}
+                      </h2>
+
+                      <p
+                        className="mt-1 text-xs"
+                        style={{ color: "var(--text-muted)" }}
+                      >
+                        {item.jobTitle}
+                      </p>
+                    </div>
                   </div>
 
-                  <div>
-                    <h2 className="text-sm font-semibold text-gray-200">
-                      {item.company}
-                    </h2>
-
-                    <p className="mt-1 text-xs text-gray-500">
-                      {item.jobTitle}
-                    </p>
-                  </div>
+                  <span
+                    className="flex h-9 w-9 items-center justify-center rounded-full border text-xs font-bold"
+                    style={scoreStyles}
+                  >
+                    {item.score}
+                  </span>
                 </div>
 
-                <span
-                  className={`flex h-9 w-9 items-center justify-center rounded-full border text-xs font-bold ${getScoreColor(
-                    item.score,
-                  )}`}
+                <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
+                  <span
+                    className="rounded-full border px-2.5 py-1"
+                    style={riskStyles}
+                  >
+                    {item.riskLevel}
+                  </span>
+
+                  <span style={{ color: "var(--text-muted)" }}>
+                    Updated {item.lastUpdated}
+                  </span>
+
+                  <span style={{ color: "var(--text-muted)" }}>
+                    {item.updates} updates
+                  </span>
+                </div>
+
+                <Link
+                  href={`/history/${item.userId}/${item.companySlug}`}
+                  className="mt-4 flex items-center justify-center gap-2 rounded-md py-2.5 text-xs font-semibold transition-opacity hover:opacity-90"
+                  style={{
+                    backgroundColor: "var(--primary)",
+                    color: "var(--primary-foreground)",
+                  }}
                 >
-                  {item.score}
-                </span>
-              </div>
-
-              <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px]">
-                <span
-                  className={`rounded-full border px-2.5 py-1 ${getRiskColor(
-                    item.riskLevel,
-                  )}`}
-                >
-                  {item.riskLevel}
-                </span>
-
-                <span className="text-gray-500">
-                  Updated {item.lastUpdated}
-                </span>
-
-                <span className="text-gray-500">
-                  {item.updates} updates
-                </span>
-              </div>
-
-              <Link
-                href={`/history/${item.userId}/${item.companySlug}`}
-                className="mt-4 flex items-center justify-center gap-2 rounded-md bg-blue-500 py-2.5 text-xs font-semibold text-white transition hover:bg-blue-400"
-              >
-                Open Investigation
-                <ChevronRight size={14} />
-              </Link>
-            </article>
-          ))}
+                  Open Investigation
+                  <ChevronRight size={14} />
+                </Link>
+              </article>
+            );
+          })}
 
           {paginatedInvestigations.length === 0 && <EmptyState />}
 
@@ -334,13 +475,22 @@ export default function HistoryPage() {
 function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center gap-2 px-5 py-12 text-center">
-      <AlertCircle size={24} className="text-gray-600" />
+      <AlertCircle
+        size={24}
+        style={{ color: "var(--text-muted)" }}
+      />
 
-      <p className="text-sm text-gray-400">
+      <p
+        className="text-sm"
+        style={{ color: "var(--text-secondary)" }}
+      >
         No investigations found.
       </p>
 
-      <p className="text-xs text-gray-600">
+      <p
+        className="text-xs"
+        style={{ color: "var(--text-muted)" }}
+      >
         Try another company name or risk filter.
       </p>
     </div>
@@ -367,7 +517,13 @@ function HistoryFooter({
   onNext,
 }: HistoryFooterProps) {
   return (
-    <div className="flex flex-col gap-3 border-t border-white/10 px-4 py-4 text-[11px] text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+    <div
+      className="flex flex-col gap-3 border-t px-4 py-4 text-xs sm:flex-row sm:items-center sm:justify-between"
+      style={{
+        borderColor: "var(--border)",
+        color: "var(--text-muted)",
+      }}
+    >
       <span>
         {totalCount === 0
           ? "Showing 0 investigations"
@@ -379,13 +535,24 @@ function HistoryFooter({
           type="button"
           onClick={onPrevious}
           disabled={currentPage === 1}
-          className="flex items-center gap-1 rounded border border-white/10 px-2 py-1.5 transition hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+          className="flex items-center gap-1 rounded border px-2 py-1.5 transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+          style={{
+            borderColor: "var(--border)",
+            color: "var(--text-secondary)",
+          }}
         >
           <ChevronLeft size={12} />
           Previous
         </button>
 
-        <span className="rounded bg-blue-500/10 px-2.5 py-1.5 text-blue-400">
+        <span
+          className="rounded px-2.5 py-1.5"
+          style={{
+            backgroundColor:
+              "color-mix(in srgb, var(--primary) 10%, transparent)",
+            color: "var(--primary)",
+          }}
+        >
           {currentPage}
         </span>
 
@@ -393,7 +560,11 @@ function HistoryFooter({
           type="button"
           onClick={onNext}
           disabled={currentPage === totalPages || totalCount === 0}
-          className="flex items-center gap-1 rounded border border-white/10 px-2 py-1.5 transition hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
+          className="flex items-center gap-1 rounded border px-2 py-1.5 transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+          style={{
+            borderColor: "var(--border)",
+            color: "var(--text-secondary)",
+          }}
         >
           Next
           <ChevronRight size={12} />

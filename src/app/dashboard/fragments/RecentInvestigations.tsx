@@ -5,29 +5,60 @@ import { ChevronRight } from "lucide-react";
 import { investigations } from "@/data/investigation";
 
 const riskStyles = {
-  "Low Risk": "bg-emerald-500/10 text-emerald-400",
-  "Medium Risk": "bg-amber-500/10 text-amber-400",
-  "High Risk": "bg-red-500/10 text-red-400",
-  Critical: "bg-red-500/10 text-red-400",
+  "Low Risk": {
+    backgroundColor:
+      "color-mix(in srgb, var(--risk-low) 10%, transparent)",
+    color: "var(--risk-low)",
+  },
+  "Medium Risk": {
+    backgroundColor:
+      "color-mix(in srgb, var(--risk-medium) 10%, transparent)",
+    color: "var(--risk-medium)",
+  },
+  "High Risk": {
+    backgroundColor:
+      "color-mix(in srgb, var(--risk-high) 10%, transparent)",
+    color: "var(--risk-high)",
+  },
+  Critical: {
+    backgroundColor:
+      "color-mix(in srgb, var(--risk-high) 10%, transparent)",
+    color: "var(--risk-high)",
+  },
 };
 
 const scoreStyles = {
-  "Low Risk": "text-emerald-400",
-  "Medium Risk": "text-amber-400",
-  "High Risk": "text-red-400",
-  Critical: "text-red-400",
+  "Low Risk": "var(--risk-low)",
+  "Medium Risk": "var(--risk-medium)",
+  "High Risk": "var(--risk-high)",
+  Critical: "var(--risk-high)",
 };
 
 export default function RecentInvestigations() {
   return (
-    <section className="min-w-0 rounded-xl border border-white/10 bg-[#111a2e] p-6 shadow-[0_12px_32px_rgba(0,0,0,0.12)] lg:min-h-[438px]">
-      <h2 className="text-base font-semibold tracking-[-0.01em] text-white">
+    <section
+      className="min-w-0 rounded-xl border p-6 shadow-[0_12px_32px_rgba(0,0,0,0.12)] lg:min-h-[438px]"
+      style={{
+        backgroundColor: "var(--surface)",
+        borderColor: "var(--border)",
+      }}
+    >
+      <h2
+        className="text-base font-semibold tracking-[-0.01em]"
+        style={{ color: "var(--text-primary)" }}
+      >
         Recent Investigations
       </h2>
 
       <div className="mt-4 overflow-x-auto pb-1">
         <div className="min-w-[548px]">
-          <div className="grid grid-cols-[1.65fr_1.05fr_.9fr_.85fr_1.15fr_.65fr] items-center gap-3 border-b border-white/5 pb-2 text-[11px] font-medium text-[#71809b]">
+          <div
+            className="grid grid-cols-[1.65fr_1.05fr_.9fr_.85fr_1.15fr_.65fr] items-center gap-3 border-b pb-2 text-xs font-medium"
+            style={{
+              borderColor: "var(--border)",
+              color: "var(--text-secondary)",
+            }}
+          >
             <span>JOB TITLE</span>
             <span>COMPANY</span>
             <span>RISK SCORE</span>
@@ -43,37 +74,56 @@ export default function RecentInvestigations() {
               return (
                 <div
                   key={`${job.userId}-${job.id}`}
-                  className="grid grid-cols-[1.65fr_1.05fr_.9fr_.85fr_1.15fr_.65fr] items-center gap-3 rounded-md bg-[#070d19] px-3 py-2.5 text-[12px]"
+                  className="grid grid-cols-[1.65fr_1.05fr_.9fr_.85fr_1.15fr_.65fr] items-center gap-3 rounded-md px-3 py-2.5 text-sm"
+                  style={{
+                    backgroundColor: "var(--background)",
+                    color: "var(--text-primary)",
+                  }}
                 >
-                  <span className="truncate font-semibold text-white">
+                  <span
+                    className="truncate font-semibold"
+                    style={{ color: "var(--text-primary)" }}
+                  >
                     {job.jobTitle}
                   </span>
 
-                  <span className="truncate text-[#8d9ab0]">
+                  <span
+                    className="truncate"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
                     {job.company}
                   </span>
 
                   <span
-                    className={`font-semibold ${scoreStyles[risk]}`}
+                    className="font-semibold"
+                    style={{ color: scoreStyles[risk] }}
                   >
                     {job.score}/100
                   </span>
 
                   <span>
                     <span
-                      className={`inline-flex rounded-2xl px-2 py-1 text-[10px] font-medium ${riskStyles[risk]}`}
+                      className="inline-flex rounded-2xl px-2 py-1 text-xs font-medium"
+                      style={riskStyles[risk]}
                     >
                       {job.riskLevel}
                     </span>
                   </span>
 
-                  <span className="whitespace-nowrap text-[#71809b]">
+                  <span
+                    className="whitespace-nowrap"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
                     {job.lastUpdated}
                   </span>
 
                   <Link
-                   href={`/history/${job.userId}/${job.companySlug}?from=dashboard`}
-                    className="inline-flex w-fit items-center gap-1 rounded-md border border-white/10 px-3 py-1 text-[11px] font-medium text-white transition-colors hover:bg-white/5"
+                    href={`/history/${job.userId}/${job.companySlug}?from=dashboard`}
+                    className="inline-flex w-fit items-center gap-1 rounded-md border px-3 py-1 text-sm font-medium transition-colors"
+                    style={{
+                      borderColor: "var(--border)",
+                      color: "var(--text-primary)",
+                    }}
                   >
                     View
                     <ChevronRight size={13} />

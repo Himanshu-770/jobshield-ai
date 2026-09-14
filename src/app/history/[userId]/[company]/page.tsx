@@ -1,3 +1,5 @@
+"use client";
+
 import type { ReactNode } from "react";
 import Link from "next/link";
 import {
@@ -46,23 +48,39 @@ export default async function InvestigationPage({
 
   if (!investigation) {
     return (
-      <main className="min-h-screen bg-[#070B14] text-white md:flex">
+      <main
+        className="min-h-screen md:flex"
+        style={{
+          backgroundColor: "var(--background)",
+          color: "var(--text-primary)",
+        }}
+      >
         <Sidebar />
 
         <section className="flex flex-1 flex-col items-center justify-center px-5 py-16 text-center">
-          <ShieldAlert size={40} className="text-red-400" />
+          <ShieldAlert
+            size={40}
+            style={{ color: "var(--risk-high)" }}
+          />
 
           <h1 className="mt-4 text-xl font-bold">
             Investigation Not Found
           </h1>
 
-          <p className="mt-2 text-sm text-gray-500">
+          <p
+            className="mt-2 text-sm"
+            style={{ color: "var(--text-muted)" }}
+          >
             This investigation does not exist or is not available.
           </p>
 
           <Link
             href={backHref}
-            className="mt-6 rounded-md bg-blue-500 px-5 py-2.5 text-sm font-semibold transition hover:bg-blue-400"
+            className="mt-6 rounded-md px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90"
+            style={{
+              backgroundColor: "var(--primary)",
+              color: "var(--primary-foreground)",
+            }}
           >
             {backLabel}
           </Link>
@@ -73,13 +91,19 @@ export default async function InvestigationPage({
 
   const scoreColor =
     investigation.score >= 80
-      ? "text-red-400"
+      ? "var(--risk-high)"
       : investigation.score >= 50
-        ? "text-orange-400"
-        : "text-emerald-400";
+        ? "var(--risk-medium)"
+        : "var(--risk-low)";
 
   return (
-    <main className="min-h-screen bg-[#070B14] text-white md:flex">
+    <main
+      className="min-h-screen md:flex"
+      style={{
+        backgroundColor: "var(--background)",
+        color: "var(--text-primary)",
+      }}
+    >
       <Sidebar />
 
       <section className="min-w-0 flex-1 px-5 py-6 md:px-8 md:py-8">
@@ -87,27 +111,47 @@ export default async function InvestigationPage({
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Link
             href={backHref}
-            className="flex items-center gap-2 text-xs text-gray-500 transition hover:text-white"
+            className="flex items-center gap-2 text-xs transition-opacity hover:opacity-80"
+            style={{ color: "var(--text-secondary)" }}
           >
             <ArrowLeft size={14} />
             {backLabel}
           </Link>
 
-          <span className="text-[11px] text-gray-600">
+          <span
+            className="text-xs"
+            style={{ color: "var(--text-muted)" }}
+          >
             Investigation #{investigation.id}
           </span>
         </div>
 
         {/* Company Header */}
-        <header className="mt-6 rounded-xl border border-white/10 bg-[#111A2E] p-5 md:p-6">
+        <header
+          className="mt-6 rounded-xl border p-5 md:p-6"
+          style={{
+            backgroundColor: "var(--surface)",
+            borderColor: "var(--border)",
+          }}
+        >
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400">
+              <div
+                className="flex h-14 w-14 items-center justify-center rounded-xl"
+                style={{
+                  backgroundColor:
+                    "color-mix(in srgb, var(--primary) 10%, transparent)",
+                  color: "var(--primary)",
+                }}
+              >
                 <Building2 size={26} />
               </div>
 
               <div>
-                <p className="text-[12px] uppercase tracking-wider text-gray-500">
+                <p
+                  className="text-xs uppercase tracking-wider"
+                  style={{ color: "var(--text-muted)" }}
+                >
                   Company Investigation
                 </p>
 
@@ -115,24 +159,45 @@ export default async function InvestigationPage({
                   {investigation.company}
                 </h1>
 
-                <p className="mt-1 text-sm text-gray-500">
+                <p
+                  className="mt-1 text-sm"
+                  style={{ color: "var(--text-muted)" }}
+                >
                   {investigation.jobTitle}
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 rounded-lg border border-white/10 bg-[#080D17] px-4 py-3">
-              <ShieldCheck size={20} className="text-blue-400" />
+            <div
+              className="flex items-center gap-3 rounded-lg border px-4 py-3"
+              style={{
+                backgroundColor: "var(--surface-secondary)",
+                borderColor: "var(--border)",
+              }}
+            >
+              <ShieldCheck
+                size={20}
+                style={{ color: "var(--primary)" }}
+              />
 
               <div>
-                <p className="text-[10px] uppercase text-gray-500">
+                <p
+                  className="text-xs uppercase"
+                  style={{ color: "var(--text-muted)" }}
+                >
                   Overall Risk Score
                 </p>
 
-                <p className={`mt-1 text-xl font-bold ${scoreColor}`}>
+                <p
+                  className="mt-1 text-xl font-bold"
+                  style={{ color: scoreColor }}
+                >
                   {investigation.score}
 
-                  <span className="ml-1 text-xs font-normal text-gray-600">
+                  <span
+                    className="ml-1 text-xs font-normal"
+                    style={{ color: "var(--text-muted)" }}
+                  >
                     /100
                   </span>
                 </p>
@@ -143,12 +208,21 @@ export default async function InvestigationPage({
 
         {/* Investigation Overview */}
         <div className="mt-5 grid gap-5 lg:grid-cols-[1fr_300px]">
-          <section className="rounded-xl border border-white/10 bg-[#111A2E] p-5">
+          <section
+            className="rounded-xl border p-5"
+            style={{
+              backgroundColor: "var(--surface)",
+              borderColor: "var(--border)",
+            }}
+          >
             <h2 className="text-base font-semibold">
               Investigation Overview
             </h2>
 
-            <p className="mt-2 text-sm leading-6 text-gray-500">
+            <p
+              className="mt-2 text-sm leading-6"
+              style={{ color: "var(--text-secondary)" }}
+            >
               {investigation.description}
             </p>
 
@@ -180,33 +254,63 @@ export default async function InvestigationPage({
           </section>
 
           {/* Company Verification */}
-          <section className="rounded-xl border border-white/10 bg-[#111A2E] p-5">
+          <section
+            className="rounded-xl border p-5"
+            style={{
+              backgroundColor: "var(--surface)",
+              borderColor: "var(--border)",
+            }}
+          >
             <div className="flex items-center gap-2">
-              <ShieldCheck size={17} className="text-blue-400" />
+              <ShieldCheck
+                size={17}
+                style={{ color: "var(--primary)" }}
+              />
 
-              <h2 className="text-sm font-semibold">
+              <h2 className="text-base font-semibold">
                 Company Verification
               </h2>
             </div>
 
-            <p className="mt-4 text-[10px] uppercase text-gray-500">
+            <p
+              className="mt-4 text-xs uppercase"
+              style={{ color: "var(--text-muted)" }}
+            >
               Company Name
             </p>
 
-            <p className="mt-1 text-sm text-gray-200">
+            <p
+              className="mt-1 text-sm"
+              style={{ color: "var(--text-primary)" }}
+            >
               {investigation.company}
             </p>
 
-            <p className="mt-4 text-[10px] uppercase text-gray-500">
+            <p
+              className="mt-4 text-xs uppercase"
+              style={{ color: "var(--text-muted)" }}
+            >
               Status
             </p>
 
-            <div className="mt-2 flex items-center gap-2 text-xs text-orange-400">
+            <div
+              className="mt-2 flex items-center gap-2 text-xs"
+              style={{ color: "var(--risk-medium)" }}
+            >
               <AlertTriangle size={14} />
               Needs Review
             </div>
 
-            <div className="mt-5 rounded-md border border-orange-500/20 bg-orange-500/10 p-3 text-xs leading-5 text-orange-300">
+            <div
+              className="mt-5 rounded-md border p-3 text-xs leading-5"
+              style={{
+                backgroundColor:
+                  "color-mix(in srgb, var(--risk-medium) 10%, transparent)",
+                borderColor:
+                  "color-mix(in srgb, var(--risk-medium) 20%, transparent)",
+                color: "var(--risk-medium)",
+              }}
+            >
               Verify company details before sharing sensitive information.
             </div>
           </section>
@@ -220,9 +324,18 @@ export default async function InvestigationPage({
         </div>
 
         {/* Risk Indicators */}
-        <section className="mt-5 rounded-xl border border-white/10 bg-[#111A2E] p-5">
+        <section
+          className="mt-5 rounded-xl border p-5"
+          style={{
+            backgroundColor: "var(--surface)",
+            borderColor: "var(--border)",
+          }}
+        >
           <div className="flex items-center gap-2">
-            <ShieldAlert size={17} className="text-red-400" />
+            <ShieldAlert
+              size={17}
+              style={{ color: "var(--risk-high)" }}
+            />
 
             <h2 className="text-base font-semibold">
               Detected Risk Indicators
@@ -234,24 +347,44 @@ export default async function InvestigationPage({
               {investigation.redFlags.map((flag) => (
                 <div
                   key={flag.title}
-                  className="rounded-lg border border-white/10 bg-[#080D17] p-4"
+                  className="rounded-lg border p-4"
+                  style={{
+                    backgroundColor: "var(--surface-secondary)",
+                    borderColor: "var(--border)",
+                  }}
                 >
                   <div className="flex items-center gap-2">
-                    <AlertTriangle size={15} className="text-red-400" />
+                    <AlertTriangle
+                      size={15}
+                      style={{ color: "var(--risk-high)" }}
+                    />
 
-                    <h3 className="text-sm font-medium text-gray-200">
+                    <h3
+                      className="text-sm font-medium"
+                      style={{ color: "var(--text-primary)" }}
+                    >
                       {flag.title}
                     </h3>
                   </div>
 
-                  <p className="mt-2 text-[13px] leading-5 text-gray-500">
+                  <p
+                    className="mt-2 text-sm leading-5"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
                     {flag.description}
                   </p>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="mt-4 flex items-center gap-2 rounded-lg bg-emerald-500/10 p-4 text-sm text-emerald-400">
+            <div
+              className="mt-4 flex items-center gap-2 rounded-lg p-4 text-sm"
+              style={{
+                backgroundColor:
+                  "color-mix(in srgb, var(--risk-low) 10%, transparent)",
+                color: "var(--risk-low)",
+              }}
+            >
               <CheckCircle2 size={17} />
               No major risk indicators detected.
             </div>
@@ -259,7 +392,13 @@ export default async function InvestigationPage({
         </section>
 
         {/* Investigation Metadata */}
-        <section className="mt-5 rounded-xl border border-white/10 bg-[#111A2E] p-5">
+        <section
+          className="mt-5 rounded-xl border p-5"
+          style={{
+            backgroundColor: "var(--surface)",
+            borderColor: "var(--border)",
+          }}
+        >
           <h2 className="text-base font-semibold">
             Investigation Details
           </h2>
@@ -299,13 +438,25 @@ function InfoItem({
   value: string;
 }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-[#080D17] p-3">
-      <div className="flex items-center gap-2 text-[10px] uppercase tracking-wide text-gray-500">
+    <div
+      className="rounded-lg border p-3"
+      style={{
+        backgroundColor: "var(--surface-secondary)",
+        borderColor: "var(--border)",
+      }}
+    >
+      <div
+        className="flex items-center gap-2 text-xs uppercase tracking-wide"
+        style={{ color: "var(--text-muted)" }}
+      >
         {icon}
         {label}
       </div>
 
-      <p className="mt-2 break-words text-sm text-gray-200">
+      <p
+        className="mt-2 break-words text-sm"
+        style={{ color: "var(--text-primary)" }}
+      >
         {value}
       </p>
     </div>

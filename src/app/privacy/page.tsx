@@ -111,27 +111,48 @@ const sections = [
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-[#070B14] text-white">
+    <main
+      className="min-h-screen"
+      style={{
+        backgroundColor: "var(--background)",
+        color: "var(--text-primary)",
+      }}
+    >
       {/* Header */}
-      <header className="border-b border-white/10 bg-[#070B14]">
+      <header
+        className="border-b"
+        style={{
+          backgroundColor: "var(--background)",
+          borderColor: "var(--border)",
+        }}
+      >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <Link
             href="/"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 transition-opacity hover:opacity-80"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 shadow-[0_0_20px_rgba(59,130,246,0.35)]">
+            <div
+              className="flex h-8 w-8 items-center justify-center rounded-lg"
+              style={{
+                backgroundColor: "var(--primary)",
+                color: "var(--primary-foreground)",
+                boxShadow:
+                  "0 0 20px color-mix(in srgb, var(--primary) 35%, transparent)",
+              }}
+            >
               <ShieldCheck size={17} />
             </div>
 
             <span className="font-bold">
               JobShield{" "}
-              <span className="text-blue-500">AI</span>
+              <span style={{ color: "var(--primary)" }}>AI</span>
             </span>
           </Link>
 
           <Link
             href="/"
-            className="flex items-center gap-2 text-xs text-gray-400 transition hover:text-white"
+            className="flex items-center gap-2 text-xs transition-opacity hover:opacity-80"
+            style={{ color: "var(--text-secondary)" }}
           >
             <ArrowLeft size={14} />
             Back to Home
@@ -142,10 +163,19 @@ export default function PrivacyPage() {
       {/* Privacy Policy */}
       <section className="px-6 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
-
           {/* Heading */}
-          <div className="border-b border-white/10 pb-8">
-            <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 text-blue-500">
+          <div
+            className="border-b pb-8"
+            style={{ borderColor: "var(--border)" }}
+          >
+            <div
+              className="mb-5 flex h-10 w-10 items-center justify-center rounded-lg"
+              style={{
+                backgroundColor:
+                  "color-mix(in srgb, var(--primary) 10%, transparent)",
+                color: "var(--primary)",
+              }}
+            >
               <LockKeyhole size={20} />
             </div>
 
@@ -153,13 +183,19 @@ export default function PrivacyPage() {
               Privacy Policy
             </h1>
 
-            <p className="mt-3 text-sm leading-6 text-gray-500">
+            <p
+              className="mt-3 text-sm leading-6"
+              style={{ color: "var(--text-secondary)" }}
+            >
               Your privacy and security are important to us. This policy
               explains how JobShield AI collects, uses, and protects
               information when you use our platform.
             </p>
 
-            <p className="mt-4 text-xs text-gray-600">
+            <p
+              className="mt-4 text-xs"
+              style={{ color: "var(--text-muted)" }}
+            >
               Effective date: September 9, 2026
             </p>
           </div>
@@ -168,11 +204,14 @@ export default function PrivacyPage() {
           <div className="mt-8 space-y-8">
             {sections.map((section) => (
               <article key={section.title}>
-                <h2 className="text-base font-semibold text-white">
+                <h2 className="text-base font-semibold">
                   {section.title}
                 </h2>
 
-                <div className="mt-3 space-y-3 text-sm leading-6 text-gray-500 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
+                <div
+                  className="mt-3 space-y-3 text-sm leading-6 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5"
+                  style={{ color: "var(--text-secondary)" }}
+                >
                   {section.content}
                 </div>
               </article>
@@ -180,12 +219,23 @@ export default function PrivacyPage() {
           </div>
 
           {/* Contact */}
-          <div className="mt-10 rounded-xl border border-blue-500/20 bg-blue-500/5 p-5">
-            <h2 className="text-sm font-semibold">
+          <div
+            className="mt-10 rounded-xl border p-5"
+            style={{
+              backgroundColor:
+                "color-mix(in srgb, var(--primary) 5%, transparent)",
+              borderColor:
+                "color-mix(in srgb, var(--primary) 20%, transparent)",
+            }}
+          >
+            <h2 className="text-base font-semibold">
               Questions about your privacy?
             </h2>
 
-            <p className="mt-2 text-xs leading-5 text-gray-500">
+            <p
+              className="mt-2 text-xs leading-5"
+              style={{ color: "var(--text-secondary)" }}
+            >
               If you have questions about this Privacy Policy or how
               your information is handled, please contact our support
               team.
@@ -193,12 +243,12 @@ export default function PrivacyPage() {
 
             <a
               href="mailto:support@jobshield.ai"
-              className="mt-4 inline-block text-xs font-semibold text-blue-500 hover:text-blue-400"
+              className="mt-4 inline-block text-xs font-semibold transition-opacity hover:opacity-80"
+              style={{ color: "var(--primary)" }}
             >
               support@jobshield.ai
             </a>
           </div>
-
         </div>
       </section>
     </main>

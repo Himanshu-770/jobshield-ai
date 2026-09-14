@@ -6,7 +6,13 @@ import SuspiciousJobCard from "./fragments/SuspiciousJobCard";
 
 export default function Dashboard() {
   return (
-    <main className="min-h-screen bg-[#070B14] text-white md:flex">
+    <main
+      className="min-h-screen md:flex"
+      style={{
+        backgroundColor: "var(--background)",
+        color: "var(--text-primary)",
+      }}
+    >
       <Sidebar />
 
       <section className="flex-1 p-5 md:p-8">

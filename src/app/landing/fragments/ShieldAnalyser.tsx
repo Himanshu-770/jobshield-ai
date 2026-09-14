@@ -1,15 +1,37 @@
+
 import { AlertTriangle } from "lucide-react";
 
 export default function ShieldAnalyzer() {
   return (
-    <div className="mx-auto w-full max-w-md rounded-xl border border-white/10 bg-[#111A2E] p-5 shadow-2xl">
+    <div
+      className="mx-auto w-full max-w-md rounded-xl border p-5 shadow-2xl"
+      style={{
+        backgroundColor: "var(--surface)",
+        borderColor: "var(--border)",
+        color: "var(--text-primary)",
+      }}
+    >
       <div className="flex items-center justify-between">
         <h2 className="text-base font-semibold">Shield Analyzer</h2>
 
-        <span className="flex flex-row items-center rounded-xl bg-emerald-500/10 px-2 py-1 text-[12px] text-emerald-400">
+        <span
+          className="flex flex-row items-center rounded-xl px-2 py-1 text-xs"
+          style={{
+            backgroundColor:
+              "color-mix(in srgb, var(--risk-low) 10%, transparent)",
+            color: "var(--risk-low)",
+          }}
+        >
           <div className="relative mr-1.5 flex h-3 w-3 items-center justify-center">
-            <div className="absolute h-3 w-3 animate-[ping_1s_cubic-bezier(0,0,0.2,1)_infinite] rounded-full bg-green-400 opacity-60" />
-            <div className="relative h-2 w-2 rounded-full bg-green-600" />
+            <div
+              className="absolute h-3 w-3 animate-[ping_1s_cubic-bezier(0,0,0.2,1)_infinite] rounded-full opacity-60"
+              style={{ backgroundColor: "var(--risk-low)" }}
+            />
+
+            <div
+              className="relative h-2 w-2 rounded-full"
+              style={{ backgroundColor: "var(--risk-low)" }}
+            />
           </div>
 
           Scanner Active
@@ -31,17 +53,35 @@ export default function ShieldAnalyzer() {
         />
       </div>
 
-      <div className="mt-5 flex gap-3 rounded-lg border border-white/10 bg-[#0B1220] p-3">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-4 border-red-500 text-sm font-medium text-red-400">
+      <div
+        className="mt-5 flex gap-3 rounded-lg border p-3"
+        style={{
+          backgroundColor: "var(--surface-secondary)",
+          borderColor: "var(--border)",
+        }}
+      >
+        <div
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-4 text-sm font-medium"
+          style={{
+            borderColor: "var(--risk-high)",
+            color: "var(--risk-high)",
+          }}
+        >
           85
         </div>
 
         <div className="min-w-0">
-          <p className="text-sm font-semibold text-red-400">
+          <p
+            className="text-sm font-semibold"
+            style={{ color: "var(--risk-high)" }}
+          >
             High Risk Scam Detected
           </p>
 
-          <p className="mt-1 text-[11px] leading-4 text-gray-500">
+          <p
+            className="mt-1 text-xs leading-4"
+            style={{ color: "var(--text-secondary)" }}
+          >
             Red flags: Telegram interview, equipment wire payment required,
             untrusted domain.
           </p>
@@ -49,11 +89,18 @@ export default function ShieldAnalyzer() {
 
         <AlertTriangle
           size={15}
-          className="ml-auto shrink-0 text-red-400"
+          className="ml-auto shrink-0"
+          style={{ color: "var(--risk-high)" }}
         />
       </div>
 
-      <button className="mt-4 w-full rounded-md bg-blue-500 py-2.5 text-sm font-medium transition hover:bg-blue-400">
+      <button
+        className="mt-4 w-full rounded-md py-2.5 text-sm font-medium transition-colors"
+        style={{
+          backgroundColor: "var(--primary)",
+          color: "var(--primary-foreground)",
+        }}
+      >
         Analyze Job
       </button>
     </div>
@@ -71,14 +118,21 @@ function Field({
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-[12px] font-semibold text-gray-500">
+      <label
+        className="mb-1.5 block text-xs font-semibold"
+        style={{ color: "var(--text-secondary)" }}
+      >
         {label}
       </label>
 
       <div
-        className={`rounded-md bg-[#080D17] px-3 py-2.5 text-[13px] text-gray-300 ${
+        className={`rounded-md px-3 py-2.5 text-sm ${
           large ? "min-h-14 leading-4" : ""
         }`}
+        style={{
+          backgroundColor: "var(--background)",
+          color: "var(--text-primary)",
+        }}
       >
         {value}
       </div>

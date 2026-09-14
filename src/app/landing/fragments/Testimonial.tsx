@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Quote, Star } from "lucide-react";
@@ -38,14 +39,23 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="overflow-hidden bg-[#0D1527] px-6 py-16 sm:py-20">
+    <section
+      className="overflow-hidden px-6 py-16 sm:py-20"
+      style={{
+        backgroundColor: "var(--surface-secondary)",
+        color: "var(--text-primary)",
+      }}
+    >
       {/* Heading */}
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-2xl font-bold sm:text-3xl">
           Trusted by Job Seekers
         </h2>
 
-        <p className="mt-4 text-sm font-medium leading-5 text-gray-500 sm:text-base">
+        <p
+          className="mt-4 text-sm font-medium leading-5 sm:text-base"
+          style={{ color: "var(--text-secondary)" }}
+        >
           See how JobShield AI helps people make safer decisions during their
           job search.
         </p>
@@ -89,32 +99,55 @@ function TestimonialCard({
   review: string;
 }) {
   return (
-    <article className="w-[300px] shrink-0 rounded-xl border border-white/10 bg-[#111A2E] p-5 sm:w-[350px]">
+    <article
+      className="w-[300px] shrink-0 rounded-xl border p-5 sm:w-[350px]"
+      style={{
+        backgroundColor: "var(--surface)",
+        borderColor: "var(--border)",
+      }}
+    >
       {/* Quote */}
       <div className="flex items-center justify-between">
-        <Quote size={22} className="text-blue-500" />
+        <Quote size={22} style={{ color: "var(--primary)" }} />
 
         <div className="flex gap-0.5">
           {[1, 2, 3, 4, 5].map((star) => (
             <Star
               key={star}
               size={13}
-              className="fill-blue-500 text-blue-500"
+              className="fill-current"
+              style={{ color: "var(--primary)" }}
             />
           ))}
         </div>
       </div>
 
       {/* Review */}
-      <p className="mt-5 min-h-[90px] text-sm font-medium leading-6 text-gray-400">
-        "{review}"
+      <p
+        className="mt-5 min-h-[90px] text-sm font-medium leading-6"
+        style={{ color: "var(--text-secondary)" }}
+      >
+        &quot;{review}&quot;
       </p>
 
       {/* User */}
-      <div className="mt-5 border-t border-white/10 pt-4">
-        <p className="text-sm font-semibold text-white">{name}</p>
+      <div
+        className="mt-5 border-t pt-4"
+        style={{ borderColor: "var(--border)" }}
+      >
+        <p
+          className="text-sm font-semibold"
+          style={{ color: "var(--text-primary)" }}
+        >
+          {name}
+        </p>
 
-        <p className="mt-1 text-xs text-gray-500">{role}</p>
+        <p
+          className="mt-1 text-xs"
+          style={{ color: "var(--text-secondary)" }}
+        >
+          {role}
+        </p>
       </div>
     </article>
   );

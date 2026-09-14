@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { CirclePlus } from "lucide-react";
 
@@ -9,14 +10,21 @@ export default function DashboardHeader() {
           Welcome back!
         </h1>
 
-        <p className="mt-1 text-sm text-gray-500">
+        <p
+          className="mt-1 text-sm"
+          style={{ color: "var(--text-secondary)" }}
+        >
           Check suspicious jobs before you apply.
         </p>
       </div>
 
       <Link
         href="/analyze"
-        className="flex shrink-0 items-center gap-1.5 rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold hover:bg-blue-400"
+        className="flex shrink-0 items-center gap-1.5 rounded-md px-3 py-2 text-sm font-semibold transition-colors"
+        style={{
+          backgroundColor: "var(--primary)",
+          color: "var(--primary-foreground)",
+        }}
       >
         <CirclePlus size={18} />
         <span>New Analysis</span>

@@ -10,7 +10,6 @@ import WhatWeAnalyze from "./fragments/WhatWeAnalyze";
 
 export default function Analyze() {
   const router = useRouter();
-
   const [activeTab, setActiveTab] = useState("Job Details");
 
   const handleAnalyze = () => {
@@ -18,7 +17,13 @@ export default function Analyze() {
   };
 
   return (
-    <main className="min-h-screen bg-[#070B14] text-white md:flex">
+    <main
+      className="min-h-screen md:flex"
+      style={{
+        backgroundColor: "var(--background)",
+        color: "var(--text-primary)",
+      }}
+    >
       <Sidebar />
 
       <section className="flex-1 p-5 md:p-8">
