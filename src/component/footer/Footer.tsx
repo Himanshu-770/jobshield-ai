@@ -63,7 +63,7 @@ export default function Footer() {
               </Link>
 
               <Link
-                href="/analyze"
+                href="/auth/login"
                 className="w-fit text-xs text-gray-500 transition hover:text-white"
               >
                 Analyze a Job

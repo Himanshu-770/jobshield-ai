@@ -1,14 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   AlertCircle,
   ChevronLeft,
   ChevronRight,
   Clock3,
   Search,
-  ShieldAlert,
 } from "lucide-react";
 
 import Sidebar from "@/component/sidebar/Sidebar";
@@ -67,7 +66,8 @@ export default function HistoryPage() {
     Math.ceil(filteredInvestigations.length / ITEMS_PER_PAGE),
   );
 
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const visiblePage = Math.min(currentPage, totalPages);
+  const startIndex = (visiblePage - 1) * ITEMS_PER_PAGE;
 
   const paginatedInvestigations = filteredInvestigations.slice(
     startIndex,
@@ -81,18 +81,6 @@ export default function HistoryPage() {
     startIndex + ITEMS_PER_PAGE,
     filteredInvestigations.length,
   );
-
-  // Reset to the first page whenever search or filter changes.
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [search, activeFilter]);
-
-  // Prevent an invalid page if the filtered result count decreases.
-  useEffect(() => {
-    if (currentPage > totalPages) {
-      setCurrentPage(totalPages);
-    }
-  }, [currentPage, totalPages]);
 
   const handlePrevious = () => {
     setCurrentPage((page) => Math.max(page - 1, 1));
@@ -138,7 +126,10 @@ export default function HistoryPage() {
 
               <input
                 value={search}
-                onChange={(event) => setSearch(event.target.value)}
+                onChange={(event) => {
+                  setSearch(event.target.value);
+                  setCurrentPage(1);
+                }}
                 placeholder="Search company or job..."
                 className="w-full rounded-md border border-white/10 bg-[#080D17] py-2.5 pl-9 pr-3 text-xs text-white outline-none placeholder:text-gray-600 focus:border-blue-500"
               />
@@ -149,7 +140,10 @@ export default function HistoryPage() {
                 <button
                   key={filter}
                   type="button"
-                  onClick={() => setActiveFilter(filter)}
+                  onClick={() => {
+                    setActiveFilter(filter);
+                    setCurrentPage(1);
+                  }}
                   className={`rounded-full border px-3 py-1.5 text-[11px] font-medium transition ${
                     activeFilter === filter
                       ? "border-blue-500 bg-blue-500 text-white"

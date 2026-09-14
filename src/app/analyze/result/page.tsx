@@ -67,7 +67,7 @@ export default function AnalysisResult() {
 
             {/* Score explanation */}
             <div className="mt-7">
-              <div className="mb-2 flex justify-between text-[11px]">
+              <div className="mb-2 flex justify-between text-[12px]">
                 <span className="text-gray-500">Risk Level</span>
                 <span className="text-red-400">High Risk</span>
               </div>
@@ -88,7 +88,7 @@ export default function AnalysisResult() {
 
             <div className="mt-6 space-y-4">
               <div>
-                <p className="text-[9px] uppercase text-gray-600">
+                <p className="text-[11px] font-semibold uppercase text-gray-600">
                   Company Name
                 </p>
 
@@ -96,7 +96,7 @@ export default function AnalysisResult() {
               </div>
 
               <div>
-                <p className="text-[9px] uppercase text-gray-600">Status</p>
+                <p className="text-[11px] font-semibold uppercase text-gray-600">Status</p>
 
                 <div className="mt-1 flex items-center gap-1.5 text-xs text-yellow-400">
                   <CircleAlert size={13} />
@@ -106,7 +106,7 @@ export default function AnalysisResult() {
 
               <Link
                 href="/investigation"
-                className="flex w-full items-center justify-center gap-2 rounded-md bg-blue-500 px-4 py-2.5 text-xs font-semibold transition hover:bg-blue-400"
+                className="flex w-full items-center justify-center gap-2 rounded-md bg-blue-500 px-4 py-2.5 text-sm font-semibold transition hover:bg-blue-400"
               >
                 Investigate This Company
                 <ArrowUpRight size={14} />
@@ -121,7 +121,7 @@ export default function AnalysisResult() {
           <section className="rounded-xl border border-white/10 bg-[#111A2E] p-5">
             <div className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-500/10">
-                <ShieldAlert size={16} className="text-red-400" />
+                <ShieldAlert size={20} className="text-red-400" />
               </div>
 
               <h2 className="text-sm font-semibold">Red Flags Detected</h2>
@@ -159,7 +159,7 @@ export default function AnalysisResult() {
             <section className="rounded-xl border border-white/10 bg-[#111A2E] p-5">
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10">
-                  <ShieldCheck size={16} className="text-emerald-400" />
+                  <ShieldCheck size={20} className="text-emerald-400" />
                 </div>
 
                 <h2 className="text-sm font-semibold">Positive Signals</h2>
@@ -175,7 +175,7 @@ export default function AnalysisResult() {
             {/* Domain Analysis */}
             <section className="rounded-xl border border-white/10 bg-[#111A2E] p-5">
               <div className="flex items-center gap-2">
-                <Globe size={16} className="text-blue-500" />
+                <Globe size={20} className="text-blue-500" />
 
                 <h2 className="text-sm font-semibold">Domain Analysis</h2>
               </div>
@@ -196,12 +196,12 @@ export default function AnalysisResult() {
                     Email Domain Match
                   </div>
 
-                  <span className="text-[10px] font-semibold text-red-400">
+                  <span className="text-[11px] font-semibold text-red-400">
                     FAILED
                   </span>
                 </div>
 
-                <p className="mt-2 text-[10px] text-gray-500">
+                <p className="mt-2 text-[11px] text-gray-500">
                   Domains do not match exactly.
                 </p>
               </div>
@@ -247,9 +247,9 @@ function Flag({
         <div className="mt-0.5 text-red-400">{icon}</div>
 
         <div>
-          <p className="text-xs font-semibold text-gray-300">{title}</p>
+          <p className="text-sm font-semibold text-gray-300">{title}</p>
 
-          <p className="mt-1 text-[10px] leading-4 text-gray-500">
+          <p className="mt-1 text-[12px] leading-4 text-gray-500">
             {description}
           </p>
         </div>
@@ -260,7 +260,7 @@ function Flag({
 
 function Signal({ text }: { text: string }) {
   return (
-    <div className="flex items-center gap-2 text-xs text-gray-400">
+    <div className="flex items-center gap-2 text-sm text-gray-400">
       <Check size={14} className="text-emerald-400" />
       {text}
     </div>
@@ -270,9 +270,9 @@ function Signal({ text }: { text: string }) {
 function DomainItem({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-[9px] uppercase text-gray-600">{label}</p>
+      <p className="text-[12px] font-semibold uppercase text-gray-600">{label}</p>
 
-      <div className="mt-2 rounded-md border border-white/10 bg-[#080D17] px-3 py-2 text-[10px] text-gray-400">
+      <div className="mt-2 rounded-md border border-white/10 bg-[#080D17] px-3 py-2 text-[11px] text-gray-400">
         {value}
       </div>
     </div>

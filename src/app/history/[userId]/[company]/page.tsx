@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import {
   AlertTriangle,
@@ -13,6 +14,7 @@ import {
 
 import Sidebar from "@/component/sidebar/Sidebar";
 import { investigations } from "@/data/investigation";
+import RecentRecruitmentUpdates from "./RecentRecruitmentUpdates";
 
 type Props = {
   params: Promise<{
@@ -105,7 +107,7 @@ export default async function InvestigationPage({
               </div>
 
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-gray-500">
+                <p className="text-[12px] uppercase tracking-wider text-gray-500">
                   Company Investigation
                 </p>
 
@@ -210,6 +212,13 @@ export default async function InvestigationPage({
           </section>
         </div>
 
+        {/* Recent Recruitment Updates */}
+        <div className="mt-5">
+          <RecentRecruitmentUpdates
+            initialUpdates={investigation.updates}
+          />
+        </div>
+
         {/* Risk Indicators */}
         <section className="mt-5 rounded-xl border border-white/10 bg-[#111A2E] p-5">
           <div className="flex items-center gap-2">
@@ -235,7 +244,7 @@ export default async function InvestigationPage({
                     </h3>
                   </div>
 
-                  <p className="mt-2 text-xs leading-5 text-gray-500">
+                  <p className="mt-2 text-[13px] leading-5 text-gray-500">
                     {flag.description}
                   </p>
                 </div>
@@ -285,7 +294,7 @@ function InfoItem({
   label,
   value,
 }: {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   value: string;
 }) {
