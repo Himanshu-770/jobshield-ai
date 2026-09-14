@@ -6,7 +6,7 @@ import ShieldAnalyzer from "./ShieldAnalyser";
 export default function Hero() {
   return (
     <section
-      className="px-6 py-20 sm:py-24 lg:px-10 lg:py-14"
+      className="px-4 py-16 sm:px-6 sm:py-24 lg:px-10 lg:py-14"
       style={{
         backgroundColor: "var(--background)",
         color: "var(--text-primary)",

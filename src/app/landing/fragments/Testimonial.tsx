@@ -2,7 +2,10 @@
 "use client";
 
 import { Quote, Star } from "lucide-react";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useAnimationControls,
+} from "framer-motion";
 
 const testimonials = [
   {
@@ -38,9 +41,26 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const controls = useAnimationControls();
+
+  const handleHoverStart = () => {
+    controls.stop();
+  };
+
+  const handleHoverEnd = () => {
+    controls.start({
+      x: ["0%", "-50%"],
+      transition: {
+        duration: 30,
+        ease: "linear",
+        repeat: Infinity,
+      },
+    });
+  };
+
   return (
     <section
-      className="overflow-hidden px-6 py-16 sm:py-20"
+      className="overflow-hidden px-4 py-16 sm:px-6 sm:py-20"
       style={{
         backgroundColor: "var(--surface-secondary)",
         color: "var(--text-primary)",
@@ -62,27 +82,26 @@ export default function Testimonials() {
       </div>
 
       {/* Moving Testimonials */}
-      <div className="relative mt-10 overflow-hidden">
+      <div
+        className="relative mt-10 overflow-hidden"
+        onMouseEnter={handleHoverStart}
+        onMouseLeave={handleHoverEnd}
+      >
         <motion.div
           className="flex w-max gap-4"
-          animate={{
-            x: ["0%", "-50%"],
-          }}
-          transition={{
-            duration: 30,
-            ease: "linear",
-            repeat: Infinity,
-          }}
-          whileHover={{
-            animationPlayState: "paused",
+          animate={controls}
+          initial={{
+            x: "0%",
           }}
         >
-          {[...testimonials, ...testimonials].map((testimonial, index) => (
-            <TestimonialCard
-              key={`${testimonial.name}-${index}`}
-              {...testimonial}
-            />
-          ))}
+          {[...testimonials, ...testimonials].map(
+            (testimonial, index) => (
+              <TestimonialCard
+                key={`${testimonial.name}-${index}`}
+                {...testimonial}
+              />
+            ),
+          )}
         </motion.div>
       </div>
     </section>
@@ -99,11 +118,22 @@ function TestimonialCard({
   review: string;
 }) {
   return (
-    <article
-      className="w-[300px] shrink-0 rounded-xl border p-5 sm:w-[350px]"
+    <motion.article
+      className="
+        w-[280px] shrink-0 rounded-xl border p-4
+        sm:w-[350px] sm:p-5
+      "
       style={{
         backgroundColor: "var(--surface)",
         borderColor: "var(--border)",
+      }}
+      whileHover={{
+        scale: 1.04,
+        borderColor: "#166534",
+      }}
+      transition={{
+        duration: 0.25,
+        ease: "easeOut",
       }}
     >
       {/* Quote */}
@@ -149,6 +179,6 @@ function TestimonialCard({
           {role}
         </p>
       </div>
-    </article>
+    </motion.article>
   );
 }

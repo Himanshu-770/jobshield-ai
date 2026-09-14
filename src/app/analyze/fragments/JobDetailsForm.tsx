@@ -37,7 +37,7 @@ function DetailsForm({
         event.preventDefault();
         onAnalyze();
       }}
-      className="rounded-xl border p-5"
+      className="rounded-xl border p-4 sm:p-5"
       style={{
         backgroundColor: "var(--surface)",
         borderColor: "var(--border)",
@@ -109,7 +109,7 @@ function UrlForm({
         event.preventDefault();
         onAnalyze();
       }}
-      className="h-45 rounded-xl border p-5"
+      className="h-45 rounded-xl border p-4 sm:p-5"
       style={{
         backgroundColor: "var(--surface)",
         borderColor: "var(--border)",
@@ -136,7 +136,7 @@ function ScreenshotForm({
         event.preventDefault();
         onAnalyze();
       }}
-      className="rounded-xl border p-5"
+      className="rounded-xl border p-4 sm:p-5"
       style={{
         backgroundColor: "var(--surface)",
         borderColor: "var(--border)",
@@ -215,7 +215,7 @@ function Field({
 
 function FormButton() {
   return (
-    <div className="mt-5 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+    <div className="mt-5 flex flex-col items-stretch justify-between gap-4 sm:flex-row sm:items-center">
       <p
         className="flex items-center gap-1.5 text-xs font-semibold"
         style={{ color: "var(--text-secondary)" }}
@@ -227,7 +227,7 @@ function FormButton() {
 
       <button
         type="submit"
-        className="flex items-center gap-1.5 rounded-md px-5 py-3 text-sm font-semibold transition-colors hover:opacity-90"
+        className="flex items-center justify-center gap-1.5 rounded-md px-5 py-3 text-sm font-semibold transition-colors hover:opacity-90"
         style={{
           backgroundColor: "var(--primary)",
           color: "var(--primary-foreground)",

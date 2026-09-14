@@ -8,11 +8,14 @@ import {
   LogOut,
   Mail,
   MapPin,
+  Moon,
   Phone,
+  Sun,
   User,
   X,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useTheme } from "@/component/ThemeProvider";
 
 const profileData = {
   name: "Alex Mercer",
@@ -24,6 +27,7 @@ const profileData = {
 
 export default function ProfilePage() {
   const router = useRouter();
+  const { theme, toggleTheme } = useTheme();
 
   const [isEditing, setIsEditing] = useState(false);
   const [photo, setPhoto] = useState<string | null>(null);
@@ -88,11 +92,11 @@ export default function ProfilePage() {
         >
           {/* Profile Header */}
           <div
-            className="border-b px-6 py-7 md:px-8"
+            className="border-b px-4 py-7 sm:px-6 md:px-8"
             style={{ borderColor: "var(--border)" }}
           >
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-center gap-5">
+              <div className="flex items-center gap-4 sm:gap-5">
                 {/* Profile Photo */}
                 <div className="relative">
                   <div
@@ -142,13 +146,13 @@ export default function ProfilePage() {
                 </div>
 
                 {/* User Name */}
-                <div>
+                <div className="min-w-0">
                   <h2 className="text-xl font-semibold">
                     {profileData.name}
                   </h2>
 
                   <p
-                    className="mt-1 text-sm"
+                    className="mt-1 break-words text-sm"
                     style={{ color: "var(--text-muted)" }}
                   >
                     {profileData.email}
@@ -183,7 +187,7 @@ export default function ProfilePage() {
                   Edit Profile
                 </button>
               ) : (
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
                     onClick={handleCancel}
@@ -216,7 +220,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Personal Information */}
-          <div className="px-6 py-7 md:px-8">
+          <div className="px-4 py-7 sm:px-6 md:px-8">
             <div className="mb-5">
               <h3 className="text-base font-semibold">
                 Personal Information
@@ -231,21 +235,19 @@ export default function ProfilePage() {
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2">
-              {/* Full Name - READ ONLY */}
               <ProfileField
                 icon={<User size={17} />}
                 label="Full Name"
                 value={profileData.name}
               />
 
-              {/* Email - READ ONLY */}
               <ProfileField
                 icon={<Mail size={17} />}
                 label="Email Address"
                 value={profileData.email}
               />
 
-              {/* Phone - EDITABLE */}
+              {/* Phone */}
               <div>
                 <label
                   className="mb-2 flex items-center gap-2 text-sm font-medium"
@@ -284,7 +286,7 @@ export default function ProfilePage() {
                 )}
               </div>
 
-              {/* Location - EDITABLE */}
+              {/* Location */}
               <div>
                 <label
                   className="mb-2 flex items-center gap-2 text-sm font-medium"
@@ -323,7 +325,6 @@ export default function ProfilePage() {
                 )}
               </div>
 
-              {/* Member Since - READ ONLY */}
               <ProfileField
                 icon={<User size={17} />}
                 label="Member Since"
@@ -333,9 +334,57 @@ export default function ProfilePage() {
           </div>
         </section>
 
+        {/* Theme Preferences */}
+        <section
+          className="mt-6 rounded-xl border p-4 sm:p-6 md:p-8"
+          style={{
+            backgroundColor: "var(--surface)",
+            borderColor: "var(--border)",
+          }}
+        >
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="text-base font-semibold">
+                Theme Preferences
+              </h3>
+
+              <p
+                className="mt-1 text-sm"
+                style={{ color: "var(--text-muted)" }}
+              >
+                Choose how JobShield AI appears on your device.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="flex items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors"
+              style={{
+                backgroundColor: "var(--surface-secondary)",
+                borderColor: "var(--border)",
+                color: "var(--text-primary)",
+              }}
+              aria-label={`Switch to ${
+                theme === "dark" ? "light" : "dark"
+              } mode`}
+            >
+              {theme === "dark" ? (
+                <Sun size={17} />
+              ) : (
+                <Moon size={17} />
+              )}
+
+              {theme === "dark"
+                ? "Switch to Light Mode"
+                : "Switch to Dark Mode"}
+            </button>
+          </div>
+        </section>
+
         {/* Account */}
         <section
-          className="mt-6 rounded-xl border p-6 md:p-8"
+          className="mt-6 rounded-xl border p-4 sm:p-6 md:p-8"
           style={{
             backgroundColor: "var(--surface)",
             borderColor: "var(--border)",

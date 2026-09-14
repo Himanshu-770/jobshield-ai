@@ -1,5 +1,9 @@
 
-import { BriefcaseBusiness, ShieldAlert, ShieldCheck } from "lucide-react";
+import {
+  BriefcaseBusiness,
+  ShieldAlert,
+  ShieldCheck,
+} from "lucide-react";
 
 const stats = [
   {
@@ -41,7 +45,13 @@ export default function StatsCards() {
       {stats.map(({ label, value, icon: Icon, type }) => (
         <div
           key={label}
-          className="rounded-xl border p-6"
+          className="
+            rounded-xl border p-4 sm:p-6
+            transition-all duration-300 ease-in-out
+            hover:z-10
+            hover:scale-[1.03]
+            hover:shadow-lg
+          "
           style={{
             backgroundColor: "var(--surface)",
             borderColor: "var(--border)",

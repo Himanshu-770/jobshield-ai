@@ -26,11 +26,11 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile Header */}
-      <header className="flex h-16 items-center border-b border-[var(--border)] bg-[var(--surface)] px-5 text-[var(--text-primary)] md:hidden">
+      <header className="flex h-16 items-center border-b border-[var(--border)] bg-[var(--surface)] px-4 text-[var(--text-primary)] md:hidden">
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="text-[var(--text-primary)] transition-colors hover:text-[var(--primary)]"
+          className="flex h-11 w-11 items-center justify-center text-[var(--text-primary)] transition-colors hover:text-[var(--primary)]"
           aria-label="Open sidebar"
         >
           <Menu size={22} />
@@ -86,7 +86,7 @@ export default function Sidebar() {
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] md:hidden"
+            className="flex h-11 w-11 items-center justify-center text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] md:hidden"
             aria-label="Close sidebar"
           >
             <X size={20} />

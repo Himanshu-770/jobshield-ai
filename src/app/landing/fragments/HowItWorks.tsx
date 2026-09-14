@@ -50,15 +50,17 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="px-6 py-16"
+      className="px-4 py-16 sm:px-6"
       style={{
         backgroundColor: "var(--surface-secondary)",
         color: "var(--text-primary)",
       }}
     >
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto max-w-3xl px-6 py-4 text-center">
-          <h2 className="text-2xl font-bold sm:text-3xl">How It Works</h2>
+        <div className="mx-auto max-w-3xl py-4 text-center">
+          <h2 className="text-2xl font-bold sm:text-3xl">
+            How It Works
+          </h2>
 
           <p
             className="mt-4 text-sm font-semibold leading-5 sm:text-base"
@@ -87,7 +89,10 @@ export default function HowItWorks() {
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {checks.map((check) => (
               <div key={check} className="flex items-center gap-2">
-                <Check size={15} style={{ color: "var(--primary)" }} />
+                <Check
+                  size={15}
+                  style={{ color: "var(--primary)" }}
+                />
 
                 <span
                   className="text-sm"
@@ -112,7 +117,15 @@ function StepCard({
 }: (typeof steps)[number]) {
   return (
     <div
-      className="mb-8 rounded-lg border p-4"
+      className="
+        mb-8 rounded-lg border p-4
+        transition-all duration-300 ease-in-out
+        hover:z-10
+        hover:scale-[1.03]
+        hover:border-2
+        hover:border-green-900
+        hover:shadow-lg
+      "
       style={{
         borderColor: "var(--border)",
         backgroundColor: "var(--surface)",
@@ -122,7 +135,8 @@ function StepCard({
         <div
           className="flex h-9 w-9 items-center justify-center rounded-lg"
           style={{
-            backgroundColor: "color-mix(in srgb, var(--primary) 10%, transparent)",
+            backgroundColor:
+              "color-mix(in srgb, var(--primary) 10%, transparent)",
             color: "var(--primary)",
           }}
         >

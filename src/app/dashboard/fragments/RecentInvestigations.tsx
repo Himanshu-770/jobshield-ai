@@ -37,7 +37,7 @@ const scoreStyles = {
 export default function RecentInvestigations() {
   return (
     <section
-      className="min-w-0 rounded-xl border p-6 shadow-[0_12px_32px_rgba(0,0,0,0.12)] lg:min-h-[438px]"
+      className="min-w-0 rounded-xl border p-4 shadow-[0_12px_32px_rgba(0,0,0,0.12)] sm:p-6 lg:min-h-[438px]"
       style={{
         backgroundColor: "var(--surface)",
         borderColor: "var(--border)",

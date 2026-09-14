@@ -21,6 +21,7 @@
   --primary-hover: #2563eb;
   --primary-foreground: #ffffff;
   --primary-shadow: rgba(59, 130, 246, 0.35);
+  --card-hover-border: #166534;
 
   --risk-high: #ef4444;
   --risk-medium: #f59e0b;
@@ -48,6 +49,7 @@ html.light {
   --primary-hover: #066653;
   --primary-foreground: #ffffff;
   --primary-shadow: rgba(8, 127, 104, 0.25);
+  --card-hover-border: #166534;
 
   --risk-high: #ef4444;
   --risk-medium: #f59e0b;

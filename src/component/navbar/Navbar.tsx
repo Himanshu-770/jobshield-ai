@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -26,7 +25,7 @@ export default function Navbar() {
 
   return (
     <nav className="border-b border-[var(--border)] bg-[var(--background)]">
-      <div className="relative mx-auto flex h-20 max-w-7xl items-center px-6">
+      <div className="relative mx-auto flex h-20 max-w-7xl items-center px-4 sm:px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <div
@@ -50,7 +49,11 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+              className={`text-sm transition-colors ${
+                theme === "light"
+                  ? "text-[var(--text-secondary)] hover:text-green-800"
+                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+              }`}
             >
               {link.label}
             </Link>
@@ -68,7 +71,11 @@ export default function Navbar() {
             title={`Switch to ${
               theme === "dark" ? "light" : "dark"
             } mode`}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border)] text-[var(--text-primary)] transition-colors hover:bg-[var(--surface)]"
+            className={`flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border)] text-[var(--text-primary)] transition-colors ${
+              theme === "light"
+                ? "hover:bg-green-50 hover:text-green-800"
+                : "hover:bg-[var(--surface)]"
+            }`}
           >
             {theme === "dark" ? (
               <Sun size={19} />
@@ -89,7 +96,11 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setOpen(!open)}
-          className="ml-auto text-[var(--text-primary)] md:hidden"
+          className={`ml-auto flex h-11 w-11 items-center justify-center transition-colors md:hidden ${
+            theme === "light"
+              ? "text-[var(--text-primary)] hover:text-green-900"
+              : "text-[var(--text-primary)] hover:text-[var(--primary)]"
+          }`}
           aria-label="Toggle menu"
           aria-expanded={open}
         >
@@ -99,14 +110,18 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       {open && (
-        <div className="border-t border-[var(--border)] px-6 py-5 md:hidden">
+        <div className="border-t border-[var(--border)] px-4 py-5 sm:px-6 md:hidden">
           <div className="flex flex-col gap-5">
             {links.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="text-sm text-[var(--text-primary)]"
+                className={`text-sm transition-colors ${
+                  theme === "light"
+                    ? "text-[var(--text-primary)] hover:text-green-800"
+                    : "text-[var(--text-primary)] hover:text-[var(--primary)]"
+                }`}
               >
                 {link.label}
               </Link>
@@ -115,13 +130,18 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggleTheme}
-              className="flex items-center gap-2 text-left text-sm text-[var(--text-primary)]"
+              className={`flex items-center gap-2 text-left text-sm transition-colors ${
+                theme === "light"
+                  ? "text-[var(--text-primary)] hover:text-green-800"
+                  : "text-[var(--text-primary)] hover:text-[var(--primary)]"
+              }`}
             >
               {theme === "dark" ? (
                 <Sun size={18} />
               ) : (
                 <Moon size={18} />
               )}
+
               {theme === "dark"
                 ? "Switch to Light Mode"
                 : "Switch to Dark Mode"}
@@ -130,7 +150,7 @@ export default function Navbar() {
             <Link
               href="/auth/login"
               onClick={() => setOpen(false)}
-              className="rounded-lg bg-[var(--primary)] px-5 py-2.5 text-center text-sm font-medium text-[var(--primary-foreground)]"
+              className="rounded-lg bg-[var(--primary)] px-5 py-2.5 text-center text-sm font-medium text-[var(--primary-foreground)] transition-colors hover:bg-[var(--primary-hover)]"
             >
               Login
             </Link>

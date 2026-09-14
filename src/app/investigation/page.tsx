@@ -551,6 +551,7 @@ export default function InvestigationPage() {
 
 /* Reusable Components */
 
+
 function StatCard({
   icon,
   label,
@@ -566,7 +567,13 @@ function StatCard({
 }) {
   return (
     <div
-      className="rounded-xl border p-4"
+      className="
+        rounded-xl border p-4
+        transition-all duration-300 ease-in-out
+        hover:z-10
+        hover:scale-[1.03]
+        hover:shadow-lg
+      "
       style={{
         backgroundColor: "var(--surface)",
         borderColor: "var(--border)",
