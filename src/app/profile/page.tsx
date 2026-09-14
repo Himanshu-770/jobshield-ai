@@ -436,7 +436,7 @@ function ProfileField({
   return (
     <div>
       <label
-        className="mb-2 flex items-center gap-2 text-sm font-medium"
+        className="mb-[2.1px] flex items-center gap-2 text-sm font-medium"
         style={{ color: "var(--text-secondary)" }}
       >
         <span style={{ color: "var(--text-muted)" }}>{icon}</span>
