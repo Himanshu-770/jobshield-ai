@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import {
   Menu,
@@ -21,7 +21,18 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+
   const { theme, toggleTheme } = useTheme();
+
+  // Keep the server and first client render identical.
+  const currentTheme = mounted ? theme : "light";
+  const isLight = currentTheme === "light";
+  const isDark = currentTheme === "dark";
 
   return (
     <nav className="border-b border-[var(--border)] bg-[var(--background)]">
@@ -50,7 +61,7 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               className={`text-sm transition-colors ${
-                theme === "light"
+                isLight
                   ? "text-[var(--text-secondary)] hover:text-green-800"
                   : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
               }`}
@@ -66,22 +77,18 @@ export default function Navbar() {
             type="button"
             onClick={toggleTheme}
             aria-label={`Switch to ${
-              theme === "dark" ? "light" : "dark"
+              isDark ? "light" : "dark"
             } mode`}
             title={`Switch to ${
-              theme === "dark" ? "light" : "dark"
+              isDark ? "light" : "dark"
             } mode`}
             className={`flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border)] text-[var(--text-primary)] transition-colors ${
-              theme === "light"
+              isLight
                 ? "hover:bg-green-50 hover:text-green-800"
                 : "hover:bg-[var(--surface)]"
             }`}
           >
-            {theme === "dark" ? (
-              <Sun size={19} />
-            ) : (
-              <Moon size={19} />
-            )}
+            {isDark ? <Sun size={19} /> : <Moon size={19} />}
           </button>
 
           <Link
@@ -97,7 +104,7 @@ export default function Navbar() {
           type="button"
           onClick={() => setOpen(!open)}
           className={`ml-auto flex h-11 w-11 items-center justify-center transition-colors md:hidden ${
-            theme === "light"
+            isLight
               ? "text-[var(--text-primary)] hover:text-green-900"
               : "text-[var(--text-primary)] hover:text-[var(--primary)]"
           }`}
@@ -118,7 +125,7 @@ export default function Navbar() {
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className={`text-sm transition-colors ${
-                  theme === "light"
+                  isLight
                     ? "text-[var(--text-primary)] hover:text-green-800"
                     : "text-[var(--text-primary)] hover:text-[var(--primary)]"
                 }`}
@@ -131,18 +138,14 @@ export default function Navbar() {
               type="button"
               onClick={toggleTheme}
               className={`flex items-center gap-2 text-left text-sm transition-colors ${
-                theme === "light"
+                isLight
                   ? "text-[var(--text-primary)] hover:text-green-800"
                   : "text-[var(--text-primary)] hover:text-[var(--primary)]"
               }`}
             >
-              {theme === "dark" ? (
-                <Sun size={18} />
-              ) : (
-                <Moon size={18} />
-              )}
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
 
-              {theme === "dark"
+              {isDark
                 ? "Switch to Light Mode"
                 : "Switch to Dark Mode"}
             </button>

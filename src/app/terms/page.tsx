@@ -41,7 +41,7 @@ const sections = [
           <li>
             Notify us if you believe your account has been compromised.
           </li>
-          <li>Do not use another person's account without permission.</li>
+          <li>Do not use another person&apos; account without permission.</li>
         </ul>
       </>
     ),

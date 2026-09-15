@@ -4,8 +4,7 @@
 import {
   createContext,
   useContext,
-  useEffect,
-  useState,
+  useSyncExternalStore,
 } from "react";
 import type { ReactNode } from "react";
 
@@ -16,45 +15,67 @@ type ThemeContextType = {
   toggleTheme: () => void;
 };
 
+const STORAGE_KEY = "jobshield-theme";
+const THEME_CHANGE_EVENT = "jobshield-theme-change";
+
 const ThemeContext = createContext<ThemeContextType | undefined>(
   undefined
 );
+
+function getStoredTheme(): Theme {
+  if (typeof window === "undefined") {
+    return "dark";
+  }
+
+  const savedTheme = localStorage.getItem(STORAGE_KEY);
+
+  return savedTheme === "light" || savedTheme === "dark"
+    ? savedTheme
+    : "dark";
+}
+
+function subscribeToTheme(callback: () => void) {
+  window.addEventListener("storage", callback);
+  window.addEventListener(THEME_CHANGE_EVENT, callback);
+
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(THEME_CHANGE_EVENT, callback);
+  };
+}
+
+function getServerTheme(): Theme {
+  return "dark";
+}
 
 export function ThemeProvider({
   children,
 }: {
   children: ReactNode;
 }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === "undefined") {
-      return "dark";
-    }
+  const theme = useSyncExternalStore(
+    subscribeToTheme,
+    getStoredTheme,
+    getServerTheme
+  );
 
-    const savedTheme = localStorage.getItem("jobshield-theme");
+  const toggleTheme = () => {
+    const nextTheme: Theme =
+      theme === "dark" ? "light" : "dark";
 
-    return savedTheme === "light" || savedTheme === "dark"
-      ? savedTheme
-      : "dark";
-  });
+    localStorage.setItem(STORAGE_KEY, nextTheme);
 
-  useEffect(() => {
     document.documentElement.classList.toggle(
       "dark",
-      theme === "dark"
+      nextTheme === "dark"
     );
 
     document.documentElement.classList.toggle(
       "light",
-      theme === "light"
+      nextTheme === "light"
     );
 
-    localStorage.setItem("jobshield-theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((currentTheme) =>
-      currentTheme === "dark" ? "light" : "dark"
-    );
+    window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
   };
 
   return (

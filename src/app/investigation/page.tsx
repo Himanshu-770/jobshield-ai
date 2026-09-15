@@ -1,3 +1,4 @@
+"use client"
 import type { ReactNode } from "react";
 import Link from "next/link";
 import {
@@ -245,7 +246,7 @@ export default function InvestigationPage() {
                       style={{ color: "var(--text-secondary)" }}
                     >
                       This company profile contains information collected from
-                      previous reports. Verify the company's official details
+                      previous reports. Verify the company&apos; official details
                       independently before sharing personal or financial
                       information.
                     </p>
@@ -531,7 +532,7 @@ export default function InvestigationPage() {
                 className="mt-3 text-xs leading-5"
                 style={{ color: "var(--text-secondary)" }}
               >
-                Due to the company's high average risk score and multiple
+                Due to the company&apos; high average risk score and multiple
                 previous scam reports, proceed with extreme caution.
               </p>
 
