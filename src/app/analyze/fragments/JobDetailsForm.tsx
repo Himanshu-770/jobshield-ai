@@ -202,7 +202,7 @@ function Field({
 
       <input
         placeholder={placeholder}
-        className="mt-2 w-full rounded-md border px-3 py-2.5 text-sm font-normal outline-none transition-colors placeholder:text-sm placeholder:font-semibold focus:border-[var(--primary)]"
+        className="mt-2 w-full rounded-md border px-3 py-2.5 text-sm font-normal outline-none transition-colors placeholder:text-sm focus:border-[var(--primary)]"
         style={{
           backgroundColor: "var(--surface-secondary)",
           borderColor: "var(--border)",

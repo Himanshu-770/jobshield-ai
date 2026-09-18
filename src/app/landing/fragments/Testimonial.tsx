@@ -1,11 +1,7 @@
-
 "use client";
 
 import { Quote, Star } from "lucide-react";
-import {
-  motion,
-  useAnimationControls,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -41,69 +37,84 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
-  const controls = useAnimationControls();
-
-  const handleHoverStart = () => {
-    controls.stop();
-  };
-
-  const handleHoverEnd = () => {
-    controls.start({
-      x: ["0%", "-50%"],
-      transition: {
-        duration: 30,
-        ease: "linear",
-        repeat: Infinity,
-      },
-    });
-  };
-
   return (
     <section
-      className="overflow-hidden px-4 py-16 sm:px-6 sm:py-20"
+      id="testimonial"
+      className="w-full overflow-hidden py-16 sm:py-24"
       style={{
         backgroundColor: "var(--surface-secondary)",
         color: "var(--text-primary)",
       }}
     >
-      {/* Heading */}
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-2xl font-bold sm:text-3xl">
-          Trusted by Job Seekers
-        </h2>
-
-        <p
-          className="mt-4 text-sm font-medium leading-5 sm:text-base"
-          style={{ color: "var(--text-secondary)" }}
-        >
-          See how JobShield AI helps people make safer decisions during their
-          job search.
-        </p>
-      </div>
-
-      {/* Moving Testimonials */}
+      {/* This width matches the PageBoundaries positions */}
       <div
-        className="relative mt-10 overflow-hidden"
-        onMouseEnter={handleHoverStart}
-        onMouseLeave={handleHoverEnd}
+        className="mx-auto w-full"
+        style={{
+          width: "min(1303px, 100%)",
+        }}
       >
-        <motion.div
-          className="flex w-max gap-4"
-          animate={controls}
-          initial={{
-            x: "0%",
-          }}
+        {/* Heading */}
+        <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
+          <h2 className="text-2xl font-bold sm:text-3xl">
+            Trusted by Job Seekers
+          </h2>
+
+          <p
+            className="mt-4 text-sm font-medium leading-5 sm:text-base"
+            style={{
+              color: "var(--text-secondary)",
+            }}
+          >
+            See how JobShield AI helps people make safer decisions during
+            their job search.
+          </p>
+        </div>
+
+        {/* Moving Testimonials */}
+        <div
+          className="testimonial-viewport relative mt-10 w-full overflow-hidden"
+          aria-label="Job seeker testimonials"
         >
-          {[...testimonials, ...testimonials].map(
-            (testimonial, index) => (
-              <TestimonialCard
-                key={`${testimonial.name}-${index}`}
-                {...testimonial}
-              />
-            ),
-          )}
-        </motion.div>
+          <div className="testimonial-track flex w-max gap-4">
+            {[...testimonials, ...testimonials].map(
+              (testimonial, index) => (
+                <TestimonialCard
+                  key={`${testimonial.name}-${index}`}
+                  {...testimonial}
+                />
+              ),
+            )}
+          </div>
+        </div>
       </div>
+
+      <style jsx>{`
+        .testimonial-track {
+          animation: testimonial-scroll 40s linear infinite;
+          will-change: transform;
+        }
+
+        .testimonial-viewport:hover .testimonial-track {
+          animation-play-state: paused;
+        }
+
+        @keyframes testimonial-scroll {
+          from {
+            transform: translateX(0);
+          }
+
+          to {
+            transform: translateX(calc(-50% - 8px));
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .testimonial-track {
+            animation-play-state: paused;
+            transform: translateX(0);
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -120,7 +131,8 @@ function TestimonialCard({
   return (
     <motion.article
       className="
-        w-[280px] shrink-0 rounded-xl border p-4
+        flex w-[280px] shrink-0 flex-col
+        rounded-xl border p-4
         sm:w-[350px] sm:p-5
       "
       style={{
@@ -128,17 +140,21 @@ function TestimonialCard({
         borderColor: "var(--border)",
       }}
       whileHover={{
-        scale: 1.04,
-        borderColor: "#166534",
+        borderColor: "var(--primary)",
       }}
       transition={{
         duration: 0.25,
         ease: "easeOut",
       }}
     >
-      {/* Quote */}
+      {/* Quote and Rating */}
       <div className="flex items-center justify-between">
-        <Quote size={22} style={{ color: "var(--primary)" }} />
+        <Quote
+          size={22}
+          style={{
+            color: "var(--primary)",
+          }}
+        />
 
         <div className="flex gap-0.5">
           {[1, 2, 3, 4, 5].map((star) => (
@@ -146,7 +162,9 @@ function TestimonialCard({
               key={star}
               size={13}
               className="fill-current"
-              style={{ color: "var(--primary)" }}
+              style={{
+                color: "var(--primary)",
+              }}
             />
           ))}
         </div>
@@ -155,7 +173,9 @@ function TestimonialCard({
       {/* Review */}
       <p
         className="mt-5 min-h-[90px] text-sm font-medium leading-6"
-        style={{ color: "var(--text-secondary)" }}
+        style={{
+          color: "var(--text-secondary)",
+        }}
       >
         &quot;{review}&quot;
       </p>
@@ -163,18 +183,24 @@ function TestimonialCard({
       {/* User */}
       <div
         className="mt-5 border-t pt-4"
-        style={{ borderColor: "var(--border)" }}
+        style={{
+          borderColor: "var(--border)",
+        }}
       >
         <p
           className="text-sm font-semibold"
-          style={{ color: "var(--text-primary)" }}
+          style={{
+            color: "var(--text-primary)",
+          }}
         >
           {name}
         </p>
 
         <p
           className="mt-1 text-xs"
-          style={{ color: "var(--text-secondary)" }}
+          style={{
+            color: "var(--text-secondary)",
+          }}
         >
           {role}
         </p>

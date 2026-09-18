@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import {
   Mail,
@@ -8,9 +7,9 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--background)]">
+    <footer className="w-full border-t border-[var(--border)] bg-[var(--background)]">
+      {/* Main Footer */}
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-        {/* Main Footer */}
         <div className="grid gap-8 md:grid-cols-3">
           {/* Brand */}
           <div>
@@ -19,7 +18,7 @@ export default function Footer() {
               className="flex w-fit items-center gap-2"
             >
               <div
-                className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--primary)]"
+                className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--primary)] text-white"
                 style={{
                   boxShadow: "0 0 20px var(--primary-shadow)",
                 }}
@@ -34,9 +33,8 @@ export default function Footer() {
             </Link>
 
             <p className="mt-3 max-w-xs text-sm leading-5 text-[var(--text-secondary)]">
-              AI-powered protection that helps job seekers
-              identify suspicious and potentially fraudulent
-              job opportunities.
+              AI-powered protection that helps job seekers identify
+              suspicious and potentially fraudulent job opportunities.
             </p>
           </div>
 
@@ -110,28 +108,34 @@ export default function Footer() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Bottom */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-[var(--border)] pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-[var(--text-secondary)]">
-            © 2026 JobShield AI. All rights reserved.
-          </p>
+      {/* Full-Width Horizontal Divider */}
+      <div
+        aria-hidden="true"
+        className="w-full border-t border-[var(--border)]"
+      />
 
-          <div className="flex flex-wrap gap-5">
-            <Link
-              href="/privacy"
-              className="text-xs text-[var(--text-secondary)] transition hover:text-[var(--text-primary)]"
-            >
-              Privacy Policy
-            </Link>
+      {/* Bottom Footer */}
+      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <p className="text-xs text-[var(--text-secondary)]">
+          © 2026 JobShield AI. All rights reserved.
+        </p>
 
-            <Link
-              href="/terms"
-              className="text-xs text-[var(--text-secondary)] transition hover:text-[var(--text-primary)]"
-            >
-              Terms of Service
-            </Link>
-          </div>
+        <div className="flex flex-wrap gap-5">
+          <Link
+            href="/privacy"
+            className="text-xs text-[var(--text-secondary)] transition hover:text-[var(--text-primary)]"
+          >
+            Privacy Policy
+          </Link>
+
+          <Link
+            href="/terms"
+            className="text-xs text-[var(--text-secondary)] transition hover:text-[var(--text-primary)]"
+          >
+            Terms of Service
+          </Link>
         </div>
       </div>
     </footer>
