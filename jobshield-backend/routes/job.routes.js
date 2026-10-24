@@ -1,0 +1,16 @@
+import express from "express";
+import { analyzeDetails, analyzeScreenshot, chatAboutJob, deleteJob, getJob, jobByURL, jobStats, listJobs } from "../controllers/job.controller.js";
+import multerUpload from "../middleware/multer.middleware.js";
+import { authMiddleware } from "../middleware/auth.middleware.js";
+const router = express.Router();
+router.use(authMiddleware);
+router.post("/url/get-data", jobByURL);
+router.post("/analyze", analyzeDetails);
+router.post("/screenshot", multerUpload.single("screenshot"), analyzeScreenshot);
+router.get("/stats", jobStats);
+router.get("/history", listJobs);
+router.get("/:id", getJob);
+router.get("/:id/chat", chatAboutJob);
+router.post("/:id/chat", chatAboutJob);
+router.delete("/:id", deleteJob);
+export default router;

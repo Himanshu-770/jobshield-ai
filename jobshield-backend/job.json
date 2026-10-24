@@ -1,0 +1,75 @@
+{
+    "job": {
+        "Job Title": "Full Stack Development - Internship (WFH & Part Time)",
+        "Company": "Cornixe",
+        "Posting ID": null,
+        "Location": "Chennai",
+        "Work Mode": "Work from home",
+        "Office Days": null,
+        "Start Date": "Immediately",
+        "Duration": "3 Months",
+        "Stipend": "₹ 7,000 - 20,000 /month",
+        "Salary": null,
+        "Apply By": "15 Oct' 26",
+        "Skills Required": [
+            "AngularJS",
+            "CSS",
+            "HTML",
+            "JavaScript",
+            "MongoDB",
+            "MySQL",
+            "PHP",
+            "Python",
+            "Git",
+            "GitHub"
+        ],
+        "Job Description": "Intern's Day-to-Day Responsibilities - Full Stack Development\nAssist in developing and maintaining web applications from frontend to backend.\nBuild responsive and user-friendly interfaces using HTML, CSS, JavaScript, and modern frontend frameworks.\nDevelop and maintain backend applications, APIs, and server-side functionality.\nWork with databases to store, retrieve, and manage application data.\nIntegrate frontend applications with backend APIs and third-party services.\nWrite clean, reusable, and well-structured code following development best practices.\nAssist in identifying, debugging, and resolving software bugs and technical issues.\nPerform testing to ensure applications are functional, responsive, and reliable.\nUse Git/GitHub for version control and collaborate with the development team.\nAssist with deploying and maintaining applications in development or cloud environments.\nParticipate in code reviews and contribute to improving application performance.\nUnderstand project requirements and convert them into technical solutions.\nMaintain technical documentation for applications, APIs, and development processes.\nStay updated with current web development technologies, frameworks, and industry practices.\nContribute to real-world full-stack projects and support the team throughout the development lifecycle.",
+        "Who Can Apply": "Only those candidates can apply who:\n1. are available for the work from home job/internship\n2. can start the work from home job/internship between 15th Sep'26 and 20th Oct'26\n3. are available for duration of 3 months\n4. have relevant skills and interests\n* Women wanting to start/restart their career can also apply.",
+        "Other Requirements": "Any Department",
+        "Perks": [
+            "Certificate",
+            "Letter of recommendation",
+            "Flexible work hours"
+        ],
+        "Number of Openings": "20",
+        "Job Offer / PPO": null,
+        "Company Description": "At Cornixe, we believe that every student has a unique professional \"Vision\". Our role is to provide the empowerment to achieve it. Guided by elite professional trainers, Cornixe serves as the strategic backbone for the next generation of industry giants. Through high-impact technical skilling, internships, and institutional partnerships, we ensure our learners are not just participants in the industry - they are the ones leading it. Join the Evolution. Whether you are a student looking to sharpen your edge or an institution aiming to elevate your curriculum, Cornixe is your partner in progress. Let's turn your vision into your reality.",
+        "Company Website": "https://www.cornixe.in/",
+        "Company Platform Profile": "https://internshala.com/company/cornixe-1784618687",
+        "Hiring Since": "July 2026",
+        "Opportunities Posted": "46",
+        "Candidates Hired": null,
+        "Actively Hiring": true,
+        "URL": "https://internshala.com/internship/detail/work-from-home-full-stack-development-internship-at-cornixe1789477152",
+        "Company Reviews": [
+            "Vignesh B expressed gratitude for being part of an amazing team that values learning, collaboration, and growth (LinkedIn)"
+        ],
+        "Company Registration": null,
+        "Company_Domain_Of_Work": [
+            "E-Learning Providers",
+            "Education/ Teaching/ Training",
+            "EdTech"
+        ]
+    },
+    "scam_analysis": {
+        "scam_risk_score": 15,
+        "risk_level": "LOW",
+        "confidence": 0.9,
+        "triggered_indicators": [],
+        "positive_legitimacy_signals": [
+            "Detailed and standard job description for Full Stack development",
+            "Presence of a professional company website (cornixe.in)",
+            "Established profile on a known platform (Internshala)",
+            "Positive review mentioned from a named individual (Vignesh B) on LinkedIn",
+            "Stipend range is realistic for an internship in India (₹ 7,000 - 20,000)"
+        ],
+        "verification": {
+            "company_exists": true,
+            "official_domain_verified": true,
+            "job_found_on_official_careers_page": null,
+            "registration_verified": null
+        },
+        "reasoning_summary": "The job posting contains no common scam indicators. There are no requests for upfront payment, training fees, or suspicious contact methods. The job description is detailed and aligns with the requested skills. While the company operates in EdTech (which can sometimes be a cover for training scams), this specific posting does not require the candidate to pay for any certification or course to get the role. The stipend is realistic, and the presence of a website and platform profile reduces risk.",
+        "decision": "APPLY"
+    }
+}

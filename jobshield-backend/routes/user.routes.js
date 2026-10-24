@@ -1,0 +1,12 @@
+import express from "express";
+import { login, logout, me, signup, updateProfile, uploadAvatar } from "../controllers/user.controller.js";
+import { authMiddleware } from "../middleware/auth.middleware.js";
+import multerUpload from "../middleware/multer.middleware.js";
+const router = express.Router();
+router.post("/login", login);
+router.post("/signup", signup);
+router.post("/logout", logout);
+router.get("/me", authMiddleware, me);
+router.patch("/profile", authMiddleware, updateProfile);
+router.post("/profile/avatar", authMiddleware, multerUpload.single("avatar"), uploadAvatar);
+export default router;
